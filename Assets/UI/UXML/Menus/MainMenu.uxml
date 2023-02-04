@@ -3,7 +3,7 @@
     <ui:VisualElement name="menu__container" style="justify-content: center; align-items: stretch;" />
     <ui:Label text="TITLE" display-tooltip-when-elided="true" name="title" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/Orbitron-Bold.ttf?fileID=12800000&amp;guid=05055dae9503af742b503db5b47ce590&amp;type=3#Orbitron-Bold&apos;); font-size: 75px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&amp;guid=993d9215e7b58bf41a0d163fd5822c9f&amp;type=2#Orbitron-Bold SDF 1&apos;); position: relative; top: 100px; left: auto;" />
     <ui:VisualElement name="buttons" style="top: 140px; justify-content: center; align-items: center;">
-        <ui:Button text="START" display-tooltip-when-elided="true" name="start__button" class="menu__button--active" />
+        <ui:Button text="START" display-tooltip-when-elided="true" name="start__button" class="menu__button" />
         <ui:Button text="EXIT GAME" display-tooltip-when-elided="true" name="exit__button" class="menu__button" style="top: 30px;" />
     </ui:VisualElement>
 </ui:UXML>
