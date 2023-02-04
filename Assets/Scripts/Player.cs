@@ -3,11 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
   [SerializeField] private float accelForce = 6f;
   [SerializeField] private float maxSpeed = 2f;
-   [SerializeField] private float jumpForce = 30f;
+  [SerializeField] private float jumpForce = 30f;
   [SerializeField] private float shootDelay = 100f;
   private Vector2 moveInput;
   private Vector3 acceleration;
