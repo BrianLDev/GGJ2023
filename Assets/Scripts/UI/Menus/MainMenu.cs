@@ -43,7 +43,7 @@ public class MainMenu : Menu
     void StartGame(ClickEvent clickEvent)
     {
         Debug.Log("MainMenu: StartGame called, loading scene 'Test'");
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("Testing Game Screens");
     }
 
     /// <summary>
