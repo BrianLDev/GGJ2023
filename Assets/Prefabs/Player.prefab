@@ -156,12 +156,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1584598674
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelForce: 6
   maxSpeed: 2
-  jumpForce: 30
   shootDelay: 0.15
+  jumpForce: 20
+  jumpDelay: 0.5
   bulletPrefab: {fileID: 7605181867176876724, guid: a4f8c0fd460c14fb6abdb8a25d609489, type: 3}

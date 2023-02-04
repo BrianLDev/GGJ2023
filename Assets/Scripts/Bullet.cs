@@ -19,10 +19,16 @@ public class Bullet : MonoBehaviour
     timer = lifetime;
   }
 
+  private void Start() {
+    // TODO: FIX THIS SO CAN SHOOT EITHER LEFT OR RIGHT WHEN STATIONARY
+    if (direction == Vector3.zero)
+      direction = Vector3.right;
+    rb.velocity = direction * speed;
+  }
+
   public void Initialize(Vector3 dir, float spd) {
     direction = dir;
     speed = spd;
-    rb.velocity = direction * speed;
   }
 
   private void Update() {
