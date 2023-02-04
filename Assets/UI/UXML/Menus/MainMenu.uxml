@@ -1,5 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/Components/Button.uss?fileID=7433441132597879392&amp;guid=1cc9bd945ab65394690e1aa55fe6f63c&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/USS/Base/Variables.uss?fileID=7433441132597879392&amp;guid=e0a1211cd2289ca4cbd2c75ab8047b59&amp;type=3#Variables" />
+    <Style src="project://database/Assets/UI/USS/Base/Base.uss?fileID=7433441132597879392&amp;guid=5846285edfbef2d419d58dd4a5d4eadd&amp;type=3#Base" />
     <ui:VisualElement name="menu__container" style="justify-content: center; align-items: stretch;" />
     <ui:Label text="TITLE" display-tooltip-when-elided="true" name="title" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/Orbitron-Bold.ttf?fileID=12800000&amp;guid=05055dae9503af742b503db5b47ce590&amp;type=3#Orbitron-Bold&apos;); font-size: 75px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&amp;guid=993d9215e7b58bf41a0d163fd5822c9f&amp;type=2#Orbitron-Bold SDF 1&apos;); position: relative; top: 100px; left: auto;" />
     <ui:VisualElement name="buttons" style="top: 140px; justify-content: center; align-items: center;">

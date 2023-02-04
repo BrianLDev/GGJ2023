@@ -3,7 +3,7 @@
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
 
-    background-color: rgba(217, 217, 217, 1);
+    background-color: var(--color-light-gray);
 }
 
 .menu__button {
@@ -22,6 +22,5 @@
     background-color: rgba(0, 0, 0, 0);
     color: rgba(255, 255, 255, 255);
 
-    -unity-font-definition: url('project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&guid=993d9215e7b58bf41a0d163fd5822c9f&type=2#Orbitron-Bold SDF 1');
     font-size: 30px;
 }
