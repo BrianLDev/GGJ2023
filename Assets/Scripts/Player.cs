@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,8 @@ public class Player : MonoBehaviour
   [SerializeField] private float accelForce = 6f;
   [SerializeField] private float maxSpeed = 2f;
   [SerializeField] private float jumpForce = 30f;
-  [SerializeField] private float shootDelay = 100f;
+  [SerializeField] private float shootDelay = 0.5f;
+  [SerializeField] private Bullet bulletPrefab;
   private Vector2 moveInput;
   private Vector3 acceleration;
   private Rigidbody2D rb;
@@ -25,7 +27,12 @@ public class Player : MonoBehaviour
   }
 
   private void Update() {
+    // Handle Shoot timer and state
     shootTimer -= Time.deltaTime;
+    if (shootTimer <= 0) {
+      isShooting = false;
+      animator.SetBool("isShooting", isShooting);
+    }
   }
 
   public void FixedUpdate() {
@@ -42,10 +49,32 @@ public class Player : MonoBehaviour
   public void Shoot() {
     if (shootTimer >= 0)
       return;
-    isShooting = true;
     shootTimer = shootDelay;
-    // TODO: SHOOT ANIMATION
-    // TODO: SHOOT A BULLET
+    isShooting = true;
+    animator.SetBool("isShooting", isShooting);
+    if (bulletPrefab == null)
+      Debug.LogError("Error: missing bullet prefab, can't shoot");
+    else {
+      GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
+      // TODO: CHANGE BULLET DIRECTION TO AIM DIRECTION INSTEAD OF RB.VELOCITY
+      bulletGO.GetComponent<Bullet>().Initialize(rb.velocity.normalized, bulletPrefab.Speed);
+    }      
+  }
+
+  public void Jump() {
+
+  }
+
+  public void Cling() {
+
+  }
+
+  public void Duck() {
+
+  }
+
+  public void Hurt() {
+
   }
 
   // INPUT
