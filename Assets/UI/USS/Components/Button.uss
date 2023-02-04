@@ -1,0 +1,25 @@
+.menu__button--active {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&guid=993d9215e7b58bf41a0d163fd5822c9f&type=2#Orbitron-Bold SDF 1');
+    font-size: 30px;
+    color: rgba(255, 255, 255, 255);
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    justify-content: center;
+    width: 70%;
+}
+
+.menu__button {
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&guid=993d9215e7b58bf41a0d163fd5822c9f&type=2#Orbitron-Bold SDF 1');
+    font-size: 30px;
+    color: rgba(255, 255, 255, 255);
+    width: 70%;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
