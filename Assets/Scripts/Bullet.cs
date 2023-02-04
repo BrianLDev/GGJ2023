@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
   private Vector3 direction;
   private Rigidbody2D rb;
   private Animator animator;
-  private bool isActive = true;
   private float timer;
 
   private void Awake() {
@@ -41,8 +40,8 @@ public class Bullet : MonoBehaviour
   public void OnCollisionEnter2D(Collision2D coll) {
     // TODO: DAMAGE THE OBJECT
     // TODO: PLAY SFX
+    rb.velocity = Vector3.zero;
     animator.SetTrigger("collision");
-    Destroy(transform.gameObject, 0.5f);
-    isActive = false;
+    Destroy(transform.gameObject, 0.25f);
   }
 }

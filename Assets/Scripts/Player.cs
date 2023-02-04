@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     acceleration.x = moveInput.x * accelForce;
     if (rb.velocity.x <= maxSpeed && acceleration.x > 0) 
       rb.AddForce(acceleration);
-    else if (-rb.velocity.x <= maxSpeed && acceleration.x < 0) 
+    else if (rb.velocity.x >= -maxSpeed && acceleration.x < 0) 
       rb.AddForce(acceleration);
     spriteRenderer.flipX = (rb.velocity.x >= 0) ? false : true;
     animator.SetFloat("movement", Math.Abs(rb.velocity.x));
