@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement />
-    <ui:Label text="TITLE" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/Orbitron-Bold.ttf?fileID=12800000&amp;guid=05055dae9503af742b503db5b47ce590&amp;type=3#Orbitron-Bold&apos;); font-size: 16px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+    <ui:Label text="TITLE" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/Orbitron-Bold.ttf?fileID=12800000&amp;guid=05055dae9503af742b503db5b47ce590&amp;type=3#Orbitron-Bold&apos;); font-size: 16px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&amp;guid=993d9215e7b58bf41a0d163fd5822c9f&amp;type=2#Orbitron-Bold SDF 1&apos;);" />
 </ui:UXML>
