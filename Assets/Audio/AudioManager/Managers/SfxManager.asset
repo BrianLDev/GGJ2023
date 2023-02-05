@@ -20,7 +20,7 @@ MonoBehaviour:
   JumperHit: {fileID: 8300000, guid: e569fa0bbc5554b36b859201af616062, type: 3}
   JumperDie: {fileID: 8300000, guid: 780eabdf1ed7d4c64bbe15e447ef8e0c, type: 3}
   OctopusHit: {fileID: 8300000, guid: 642171a47053643a4a9d4f2558c0f935, type: 3}
-  OctopusDie: {fileID: 8300000, guid: 5e6f6285b35d546d58e58b239fcc3fa2, type: 3}
+  OctopusDie: {fileID: 8300000, guid: 314b3eb0c6f9c40198eb065536d10014, type: 3}
   BioMechHit: {fileID: 8300000, guid: b0df1081cf7844407a3dc1a33f9791c7, type: 3}
   BioMechDie: {fileID: 8300000, guid: 1a8acbcdac4b74b73abfb44c078bae51, type: 3}
   Health: {fileID: 8300000, guid: eb938af42ad344aaf837bfd477bdb202, type: 3}

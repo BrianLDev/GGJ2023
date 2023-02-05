@@ -4,12 +4,12 @@ using UnityEngine;
 using EcxUtilities;
 
 public class Octopus : EnemyBase {
-  public enum OctopusState { Idle, Moving }
+  public enum OctopusState { Idle, Moving, Dead }
 
   [SerializeField] private float damage = 30f;
   [SerializeField] private float speed = 2f;
   [SerializeField] private float stateDuration = 1.5f;
-  private OctopusState jumperState = OctopusState.Idle;
+  private OctopusState octopusState = OctopusState.Idle;
   private float stateTimer = 0;
   private Rigidbody2D rb;
   // private Animator animator;
@@ -27,26 +27,28 @@ public class Octopus : EnemyBase {
   }
 
   protected void Update() {
-    // choose state
-    stateTimer -= Time.deltaTime;
-    if (stateTimer <= 0) {
-      stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
-      int random = Random.Range(0, 2);
-      ChangeStates((OctopusState)random);
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && octopusState != OctopusState.Dead) {
+      // choose state
+      stateTimer -= Time.deltaTime;
+      if (stateTimer <= 0) {
+        stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
+        int random = Random.Range(0, 2);
+        ChangeStates((OctopusState)random);
+      }
+      // flip facing left/right
+      if (rb.velocity.x > 0.1f)
+        spriteRenderer.flipX = true;
+      else
+        spriteRenderer.flipX = false;
     }
-    // flip facing left/right
-    if (rb.velocity.x > 0.1f)
-      spriteRenderer.flipX = true;
-    else
-      spriteRenderer.flipX = false;
   }
 
   protected void ChangeStates(OctopusState newState) {
-    jumperState = newState;
-    if (jumperState == OctopusState.Idle) {
+    octopusState = newState;
+    if (octopusState == OctopusState.Idle) {
       rb.velocity = Vector3.zero;
     }
-    else if (jumperState == OctopusState.Moving) {
+    else if (octopusState == OctopusState.Moving) {
       direction = Random.insideUnitCircle;
       rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
