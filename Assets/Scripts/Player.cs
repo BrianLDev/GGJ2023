@@ -54,6 +54,9 @@ public class Player : MonoBehaviour
     // face left/right
     if (moveInput.x > 0.1f || moveInput.x < -0.1f)
       spriteRenderer.flipX = (moveInput.x >= 0) ? false : true;
+    // Aim
+    if (moveInput != Vector2.zero)
+      aimDirection = moveInput.normalized;
     // Movement
     acceleration.x = moveInput.x * accelForce;
     if (rb.velocity.x <= maxSpeed && acceleration.x > 0) 
@@ -67,17 +70,16 @@ public class Player : MonoBehaviour
   public void Shoot() {
     if (shootTimer >= 0)
       return;
-
-    if (bulletPrefab == null)
+    if (bulletPrefab == null) {
       Debug.LogError("Error: missing bullet prefab, can't shoot");
-    else {
-      GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
-      bulletGO.GetComponent<Bullet>().Initialize(aimDirection, bulletPrefab.Speed);
-      AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BigGun01, AudioCategory.Sfx);
-      shootTimer = shootDelay;
-      isShooting = true;
-      animator.SetBool("isShooting", isShooting);
+      return;
     }
+    GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
+    bulletGO.GetComponent<Bullet>().Initialize(aimDirection, bulletPrefab.Speed);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BigGun01, AudioCategory.Sfx);
+    shootTimer = shootDelay;
+    isShooting = true;
+    animator.SetBool("isShooting", isShooting);
   }
 
   public void Jump() {
