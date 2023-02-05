@@ -222,9 +222,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7605181867176876724, guid: a4f8c0fd460c14fb6abdb8a25d609489, type: 3}
   maxHealth: 100
+  maxShield: 100
   accelForce: 7
   maxSpeed: 2
   shootDelay: 0.15
-  jumpForce: 4
-  jumpDelay: 0.35
+  jumpForce: 4.5
+  jumpDelay: 0.45
   knockbackForce: 2.5
