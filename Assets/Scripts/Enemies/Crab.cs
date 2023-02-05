@@ -37,9 +37,9 @@ public class Crab : EnemyBase {
   protected void FixedUpdate() {
     // handle movement
     if (crabState == CrabState.WalkLeft)
-      rb.velocity = Vector3.left * walkSpeed;
+      transform.position += Vector3.left * walkSpeed * Time.deltaTime;
     else if (crabState == CrabState.WalkRight)
-      rb.velocity = Vector3.right * walkSpeed;
+      transform.position += Vector3.right * walkSpeed * Time.deltaTime;
   }
 
   protected void ChangeStates(CrabState newState) {
