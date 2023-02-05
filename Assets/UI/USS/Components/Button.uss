@@ -1,26 +1,28 @@
-.menu__button:focus,
-.menu__button:hover {
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-
-    background-color: var(--color-light-gray);
-}
-
 .menu__button {
     width: 70%;
-    justify-content: center;
-
-    border-left-width: 1px;
-    border-right-width: 1px;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-left-color: rgba(255, 255, 255, 0);
-    border-right-color: rgba(255, 255, 255, 0);
-    border-top-color: rgba(255, 255, 255, 0);
-    border-bottom-color: rgba(255, 255, 255, 0);
-    
-    background-color: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 255);
-
+    height: 80%;
+    -unity-background-scale-mode: stretch-to-fill;
     font-size: 30px;
+}
+
+.start__button {
+    background-image: resource('Images/Start-Button');
+}
+
+.start__button:focus {
+    background-image: resource('Images/Start-Button-Focused');
+}
+
+.start__button:hover {
+    background-image: resource('Images/Start-Button-Focused');
+}
+
+.exit__button {
+    background-image: resource('Images/Exit-Game-Button');
+    top: 30px;
+}
+
+.exit__button:focus,
+.exit__button:hover {
+    background-image: resource('Images/Exit-Game-Button-Focused');
 }
