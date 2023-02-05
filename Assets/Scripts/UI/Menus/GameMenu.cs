@@ -145,6 +145,11 @@ public class GameMenu : MonoBehaviour
         {
             blurDepthOfField.active = state;
         }
+
+        if (Volume.profile.TryGet(out ColorAdjustments colorAdjustments))
+        {
+            colorAdjustments.active = state;
+        }
     }
 
 }
