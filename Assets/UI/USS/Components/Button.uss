@@ -27,6 +27,16 @@
     background-image: resource('Images/Exit-Game-Button-Focused');
 }
 
+.exitMission__button {
+    background-image: resource('Images/Exit-Mission-Button');
+    top: 30px;
+}
+
+.exitMission__button:focus,
+.exitMission__button:hover {
+    background-image: resource('Images/Exit-Mission-Button-Focused');
+}
+
 .resume__button {
     background-image: resource('Images/Resume-Button');
 }
@@ -36,3 +46,20 @@
     background-image: resource('Images/Resume-Button-Focused');
 }
 
+.restart__button {
+    background-image: resource('Images/Restart-Mission-Button');
+}
+
+.restart__button:focus,
+.restart__button:hover {
+    background-image: resource('Images/Restart-Mission-Button-Focused');
+}
+
+.continue__button {
+    background-image: resource('Images/Continue-Mission-Button');
+}
+
+.continue__button:focus,
+.continue__button:hover {
+    background-image: resource('Images/Continue-Mission-Button-Focused');
+}
