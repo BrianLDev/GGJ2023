@@ -82,43 +82,43 @@ public class GameMenu : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// On frame update, check for key presses
-    /// </summary>
-    void Update()
-    {
-        if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
-        {
-            Debug.Log("GameMenu.cs: Escape key pressed");
-            ShowPauseMenu();
-        }
+    ///// <summary>
+    ///// On frame update, check for key presses
+    ///// </summary>
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
+    //    {
+    //        Debug.Log("GameMenu.cs: Escape key pressed");
+    //        ShowPauseMenu();
+    //    }
 
-        if (Input.GetKeyDown("m"))
-        {
-            Debug.Log("GameMenu.cs: M Pressed");
-            ShowPlayerDialogue("What happened... is that an alien");
-        }
+    //    if (Input.GetKeyDown("m"))
+    //    {
+    //        Debug.Log("GameMenu.cs: M Pressed");
+    //        ShowPlayerDialogue("What happened... is that an alien");
+    //    }
 
-        if (Input.GetKeyDown("k"))
-        {
-            Debug.Log("GameMenu.cs: K Pressed");
-            ReduceHealth(10);
+    //    if (Input.GetKeyDown("k"))
+    //    {
+    //        Debug.Log("GameMenu.cs: K Pressed");
+    //        ReduceHealth(10);
 
-        }
+    //    }
 
-        if (Input.GetKeyDown("l"))
-        {
-            Debug.Log("GameMenu.cs: L Pressed");
-            GainHealth(10);
-        }
+    //    if (Input.GetKeyDown("l"))
+    //    {
+    //        Debug.Log("GameMenu.cs: L Pressed");
+    //        GainHealth(10);
+    //    }
 
-        if (Input.GetKeyDown("o"))
-        {
-            Debug.Log("GameMenu.cs: K Pressed");
-            ReduceAmmo(10);
+    //    if (Input.GetKeyDown("o"))
+    //    {
+    //        Debug.Log("GameMenu.cs: K Pressed");
+    //        ReduceAmmo(10);
 
-        }
-    }
+    //    }
+    //}
 
     /// <summary>
     /// The general workflow uses string IDs to query the VisualTreeAsset and find matching Visual Elements in the UXML.
