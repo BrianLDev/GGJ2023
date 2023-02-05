@@ -8,5 +8,5 @@
     <ui:Instance template="GameWonMenu" name="GameWonMenu" style="display: none;" />
     <ui:Instance template="GameLostMenu" name="GameLostMenu" style="display: none;" />
     <ui:Instance template="PlayerInfo" name="PlayerInfo" style="position: absolute; top: 0; left: 0;" />
-    <ui:Instance template="PlayerDialogue" name="PlayerDialogue" style="position: absolute; bottom: 0; width: 100%;" />
+    <ui:Instance template="PlayerDialogue" name="PlayerDialogue" style="position: absolute; bottom: 0; width: 100%; display: none;" />
 </ui:UXML>
