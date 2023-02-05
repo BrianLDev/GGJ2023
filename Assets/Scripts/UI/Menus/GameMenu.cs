@@ -5,13 +5,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
 public class GameMenu : MonoBehaviour
 {
     private const string _resumeButtonID = "resume__button";
-    private const string _exitButtonID = "exit__button";
+    private const string _restartButtonID = "restart__button";
+    private const string _continueButtonID = "continue__button";
+    private const string _exitMissionButtonID = "exitMission__button";
+
     private const string _playerShieldBarID = "playerShieldBar";
     private const string _playerHealthBarID = "playerHealthBar";
     private const string _playerAmmoBarID = "playerAmmoBar";
@@ -25,8 +29,11 @@ public class GameMenu : MonoBehaviour
     private VisualElement _playerHealthBarRef;
     private VisualElement _playerShieldBarRef;
     private VisualElement _playerAmmoBarRef;
+
     private Button _resumeButtonRef;
-    private Button _exitButtonRef;
+    private Button _restartButtonRef;
+    private Button _continueButtonRef;
+    private Button _exitMissionButtonRef;
 
     private bool _isGameOver;
 
@@ -34,9 +41,13 @@ public class GameMenu : MonoBehaviour
     [Header("Game Menus")] 
     [Tooltip("String IDs to query Visual Elements")] 
     [SerializeField]
-    string PauseMenuID = "PauseScreen";
-    string GameWonMenuID = "GameWon";
-    string GameLostMenuID = "GameLost";
+    string PauseMenuID = "PauseMenu";
+
+    [SerializeField]
+    string GameWonMenuID = "GameWonMenu";
+
+    [SerializeField]
+    string GameLostMenuID = "GameLostMenu";
 
     [Header("Blur")] 
     [Tooltip("Volume used to blur")] 
@@ -67,7 +78,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
         {
             Debug.Log("GameMenu.cs: Escape key pressed");
             ShowPauseMenu();
@@ -91,6 +102,13 @@ public class GameMenu : MonoBehaviour
             Debug.Log("GameMenu.cs: L Pressed");
             GainHealth(10);
         }
+
+        if (Input.GetKeyDown("o"))
+        {
+            Debug.Log("GameMenu.cs: K Pressed");
+            ReduceAmmo(10);
+
+        }
     }
 
     /// <summary>
@@ -103,14 +121,18 @@ public class GameMenu : MonoBehaviour
         _root = _gameDocument.rootVisualElement;
 
         _pauseMenuRef = _root.Query(PauseMenuID);
-        _pauseMenuRef = _root.Query(PauseMenuID);
-        _pauseMenuRef = _root.Query(PauseMenuID);
-        _resumeButtonRef = _root.Query<Button>(_resumeButtonID);
-        _exitButtonRef = _root.Query<Button>(_exitButtonID);
-
+        _gameWonMenuRef = _root.Query(GameWonMenuID);
+        _gameLostMenuRef = _root.Query(GameLostMenuID);
         _playerShieldBarRef = _root.Query<VisualElement>(_playerShieldBarID);
         _playerHealthBarRef = _root.Query<VisualElement>(_playerHealthBarID);
         _playerAmmoBarRef = _root.Query<VisualElement>(_playerAmmoBarID);
+
+        _resumeButtonRef = _root.Query<Button>(_resumeButtonID);
+        _restartButtonRef = _root.Query<Button>(_restartButtonID);
+        _continueButtonRef = _root.Query<Button>(_continueButtonID);
+        _exitMissionButtonRef = _root.Query<Button>(_exitMissionButtonID);
+
+        
     }
 
     /// <summary>
@@ -119,7 +141,9 @@ public class GameMenu : MonoBehaviour
     void RegisterButtonCallbacks()
     {
         _resumeButtonRef?.RegisterCallback<ClickEvent>(ResumeGame);
-        _exitButtonRef?.RegisterCallback<ClickEvent>(ExitGame);
+        _continueButtonRef?.RegisterCallback<ClickEvent>(ContinueGame);
+        _restartButtonRef?.RegisterCallback<ClickEvent>(RestartGame);
+        _exitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
     }
 
     /// <summary>
@@ -308,12 +332,38 @@ public class GameMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Exits Game
+    /// Continues Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ExitGame(ClickEvent clickEvent)
+    void ContinueGame(ClickEvent clickEvent)
     {
-        Application.Quit();
+        Debug.Log("GameMenu.cs: Game Continued");
+        // Add continue logic
+
+        ShowVisualElement(_gameWonMenuRef, false);
+        BlurBackground(false);
+    }
+
+    /// <summary>
+    /// Restarts Game
+    /// </summary>
+    /// <param name="clickEvent">The click event object</param>
+    void RestartGame(ClickEvent clickEvent)
+    {
+        Debug.Log("GameMenu.cs: Game Continued");
+        // Add restart logic
+
+        ShowVisualElement(_gameLostMenuRef, false);
+        BlurBackground(false);
+    }
+
+    /// <summary>
+    /// Exits Mission
+    /// </summary>
+    /// <param name="clickEvent">The click event object</param>
+    void ExitMission(ClickEvent clickEvent)
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     /// <summary>
