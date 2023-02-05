@@ -26,3 +26,13 @@
 .exit__button:hover {
     background-image: resource('Images/Exit-Game-Button-Focused');
 }
+
+.resume__button {
+    background-image: resource('Images/Resume-Button');
+}
+
+.resume__button:focus,
+.resume__button:hover {
+    background-image: resource('Images/Resume-Button-Focused');
+}
+
