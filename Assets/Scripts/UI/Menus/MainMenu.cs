@@ -14,11 +14,6 @@ public class MainMenu : Menu
     private Button _startButtonRef;
     private Button _exitGameButtonRef;
 
-    void OnEnable()
-    {
-        _startButtonRef.Focus();
-    }
-
     protected override void SetVisualElements()
     {
         base.SetVisualElements();
