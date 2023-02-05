@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="PauseMenu" src="project://database/Assets/UI/UXML/Menus/PauseMenu.uxml?fileID=9197481963319205126&amp;guid=7dbc60015565c5041bc5196225d35a29&amp;type=3#PauseMenu" />
+    <ui:Template name="PlayerInfo" src="project://database/Assets/UI/UXML/Components/PlayerInfo.uxml?fileID=9197481963319205126&amp;guid=9ec6f85dcd038124ea19d962a560776b&amp;type=3#PlayerInfo" />
+    <ui:Template name="GameWonMenu" src="project://database/Assets/UI/UXML/Menus/GameWonMenu.uxml?fileID=9197481963319205126&amp;guid=d8c9cc6258ef71545b51a2fd3f08a81c&amp;type=3#GameWonMenu" />
+    <ui:Template name="GameLostMenu" src="project://database/Assets/UI/UXML/Menus/GameLostMenu.uxml?fileID=9197481963319205126&amp;guid=d6d75ba4b41107e4f919d0cac69d9c0e&amp;type=3#GameLostMenu" />
+    <ui:Instance template="PauseMenu" name="PauseMenu" style="display: none;" />
+    <ui:Instance template="GameWonMenu" name="GameWonMenu" style="display: none;" />
+    <ui:Instance template="GameLostMenu" name="GameLostMenu" style="display: none;" />
+    <ui:Instance template="PlayerInfo" name="PlayerInfo" style="position: absolute; top: 0; left: 0;" />
+</ui:UXML>

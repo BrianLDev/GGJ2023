@@ -1,0 +1,5 @@
+:root
+{
+    --orbitron-font-family: url('project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&guid=993d9215e7b58bf41a0d163fd5822c9f&type=2#Orbitron-Bold SDF 1');
+    --color-light-gray: rgb(217, 217, 217);
+}

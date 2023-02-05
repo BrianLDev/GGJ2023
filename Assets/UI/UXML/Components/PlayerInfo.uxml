@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/Base/Variables.uss?fileID=7433441132597879392&amp;guid=e0a1211cd2289ca4cbd2c75ab8047b59&amp;type=3#Variables" />
+    <ui:VisualElement name="playerInfo__container" style="height: 278px; top: 8px; left: 8px;">
+        <ui:VisualElement name="playerBars__container" style="background-color: rgba(166, 163, 163, 0); width: 255px; height: 87px; position: absolute; top: 2px; left: 134px; background-image: resource(&apos;Images/Panel-Secondary-Stroke-12&apos;);">
+            <ui:VisualElement name="playerHealthBar__container" style="background-color: rgba(202, 202, 202, 0); width: 215px; height: 25px; position: absolute; top: 12px; left: 22px; flex-direction: column; flex-wrap: nowrap; align-items: auto; justify-content: flex-start; background-image: resource(&apos;Images/Bar-Outline-Stroke-12&apos;);">
+                <ui:VisualElement name="playerHealthBar" style="background-color: rgb(219, 113, 113); width: 200px; height: 12px; position: absolute; top: 6px; left: 7px; border-top-left-radius: 3.2px; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 3.2px; display: flex;" />
+                <ui:VisualElement name="playerShieldBar" style="background-color: rgb(204, 36, 133); width: 200px; height: 12px; position: absolute; top: 6px; left: 7px; border-top-left-radius: 3.2px; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 3.2px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="playerAmmoBar__container" style="background-color: rgba(202, 202, 202, 0); width: 215px; height: 25px; position: absolute; top: 48px; left: 22px; flex-direction: column; flex-wrap: nowrap; align-items: auto; justify-content: flex-start; background-image: resource(&apos;Images/Bar-Outline-Stroke-12&apos;);">
+                <ui:VisualElement name="playerAmmoBar" style="background-color: rgb(121, 206, 246); width: 200px; height: 12px; position: absolute; top: 6px; left: 8px; border-top-left-radius: 3.2px; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 3.2px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="playerWeapon__container" style="background-color: rgba(202, 202, 202, 0); width: 140px; height: 120px; background-image: resource(&apos;Images/Panel-Primary-Stroke-12&apos;); top: 0; -unity-background-scale-mode: stretch-to-fill;">
+            <ui:VisualElement name="playerWeapon__image" style="background-color: rgba(255, 255, 255, 0); width: 121px; height: 97px; border-bottom-right-radius: 0; background-image: url(&apos;project://database/Assets/UI/Reference/Active%20Weapon%20White.png?fileID=2800000&amp;guid=12921a9c8b2d0fe4fa35f4171c77432a&amp;type=3#Active Weapon White&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; top: 16px; left: 9px; display: flex;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
