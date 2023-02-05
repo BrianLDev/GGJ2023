@@ -81,7 +81,7 @@ public class BioMech : EnemyBase {
       animator.SetTrigger("die");
       spriteRenderer.flipX = true;
       // Destroy(transform.gameObject, 5.0f);
-      // TODO: PLAY VICTORY STINGER AND SHOW VICTORY UI
+      GameManager.Instance.Victory();
     }
   }
 

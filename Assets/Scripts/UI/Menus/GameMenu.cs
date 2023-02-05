@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
@@ -72,44 +71,6 @@ public class GameMenu : MonoBehaviour
         BlurBackground(false);
 
     }
-
-    /// <summary>
-    /// On frame update, check for key presses
-    /// </summary>
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
-    //     {
-    //         Debug.Log("GameMenu.cs: Escape key pressed");
-    //         ShowPauseMenu();
-    //     }
-
-    //     if (Input.GetKeyDown("m"))
-    //     {
-    //         Debug.Log("GameMenu.cs: M Pressed");
-    //         GainShield(20);
-    //     }
-
-    //     if (Input.GetKeyDown("k"))
-    //     {
-    //         Debug.Log("GameMenu.cs: K Pressed");
-    //         ReduceHealth(10);
-
-    //     }
-
-    //     if (Input.GetKeyDown("l"))
-    //     {
-    //         Debug.Log("GameMenu.cs: L Pressed");
-    //         GainHealth(10);
-    //     }
-
-    //     if (Input.GetKeyDown("o"))
-    //     {
-    //         Debug.Log("GameMenu.cs: K Pressed");
-    //         ReduceAmmo(10);
-
-    //     }
-    // }
 
     /// <summary>
     /// The general workflow uses string IDs to query the VisualTreeAsset and find matching Visual Elements in the UXML.
@@ -360,7 +321,7 @@ public class GameMenu : MonoBehaviour
     public void RestartGame(ClickEvent clickEvent)
     {
         Debug.Log("GameMenu.cs: Game Continued");
-        // Add restart logic
+        GameManager.Instance.StartGame();
 
         ShowVisualElement(_gameLostMenuRef, false);
         BlurBackground(false);
@@ -372,7 +333,7 @@ public class GameMenu : MonoBehaviour
     /// <param name="clickEvent">The click event object</param>
     public void ExitMission(ClickEvent clickEvent)
     {
-        SceneManager.LoadScene("MainMenu");
+      GameManager.Instance.MainMenu();
     }
 
     /// <summary>

@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
   private bool isShooting = false;
   private float shootTimer = 0f;
   private float jumpTimer = 0f;
+  private bool playerDead = false;
 
   private void Awake() {
     rb = GetComponent<Rigidbody2D>();
@@ -41,12 +42,13 @@ public class Player : MonoBehaviour
 
   private void Start() {
     gameMenu = FindObjectOfType<GameMenu>();
+    spriteRenderer.enabled = true;
     health = maxHealth;
     shield = 0;
   }
 
   private void Update() {
-    if (GameManager.Instance.CurrentState == GameManager.GameState.Game) {
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && !playerDead) {
       // Handle Shoot timer and state
       shootTimer -= Time.deltaTime;
       if (shootTimer <= 0) {
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour
   }
 
   public void FixedUpdate() {
-    if (GameManager.Instance.CurrentState == GameManager.GameState.Game) {
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && !playerDead) {
       // face left/right
       if (moveInput.x > 0.1f || moveInput.x < -0.1f)
         spriteRenderer.flipX = (moveInput.x >= 0) ? false : true;
@@ -82,7 +84,7 @@ public class Player : MonoBehaviour
 
 
   public void Shoot() {
-    if (GameManager.Instance.CurrentState == GameManager.GameState.Game) {
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && !playerDead) {
       if (shootTimer >= 0)
         return;
       if (bulletPrefab == null) {
@@ -99,7 +101,7 @@ public class Player : MonoBehaviour
   }
 
   public void Jump() {
-    if (GameManager.Instance.CurrentState == GameManager.GameState.Game) {
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && !playerDead) {
       if (jumpTimer >= 0)
         return;
       rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -120,17 +122,21 @@ public class Player : MonoBehaviour
   }
 
   public void TakeDamage(float amt) {
-    Debug.Log("Player taking damage! " + amt);
-    animator.SetTrigger("hurt");
-    health -= amt;
-    gameMenu.ReduceHealth(amt);
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerHit, AudioCategory.Sfx, 3.0f);
-    if (health <= 0)
-      Die();
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && !playerDead) {
+      Debug.Log("Player taking damage! " + amt);
+      animator.SetTrigger("hurt");
+      health -= amt;
+      gameMenu.ReduceHealth(amt);
+      AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerHit, AudioCategory.Sfx, 3.0f);
+      if (health <= 0)
+        Die();
+    }
   }
 
   public void KnockBack(Vector2 dir, float multiplier = 1f) {
-    rb.AddForce(dir * knockbackForce * multiplier, ForceMode2D.Impulse);
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && !playerDead) {
+      rb.AddForce(dir * knockbackForce * multiplier, ForceMode2D.Impulse);
+    }
   }
 
   public void Heal(float amt) {
@@ -146,8 +152,11 @@ public class Player : MonoBehaviour
   }
 
   private void Die() {
-    // TODO: PLAY DIE ANIMATION
+    // TODO: PLAY DIE ANIMATION IF THERE IS ONE (NONE CURRENTLY)
     AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerDie, AudioCategory.Sfx, 3.0f);
+    playerDead = true;
+    GameManager.Instance.GameOver();
+    spriteRenderer.enabled = false;
     // TODO: GAME OVER LOGIC AND WHAT NOT
   }
 
