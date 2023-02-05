@@ -17,7 +17,7 @@ public class PowerupHealth : PowerupBase {
   }
 
   protected override void PlayPowerupSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.Health, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.Health, AudioCategory.Sfx, 7.0f);
   }
   
 }

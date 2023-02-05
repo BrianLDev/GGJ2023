@@ -61,11 +61,11 @@ public class Octopus : EnemyBase {
 
   // Note - EnemyBase calls PlayHurtSFX
   protected override void PlayHurtSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusHit, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusHit, AudioCategory.Sfx, 4.5f);
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx, 6.0f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

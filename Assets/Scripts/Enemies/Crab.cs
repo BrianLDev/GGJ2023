@@ -68,11 +68,11 @@ public class Crab : EnemyBase {
 
   // Note - EnemyBase calls PlayHurtSFX
   protected override void PlayHurtSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabHit, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabHit, AudioCategory.Sfx, 2.5f);
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabDie, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabDie, AudioCategory.Sfx, 2.5f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

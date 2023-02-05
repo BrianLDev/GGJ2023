@@ -64,11 +64,11 @@ public class Jumper : EnemyBase {
 
   // Note - EnemyBase calls PlayHurtSFX
   protected override void PlayHurtSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.JumperHit, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.JumperHit, AudioCategory.Sfx, 0.8f);
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.JumperDie, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.JumperDie, AudioCategory.Sfx, 2.0f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

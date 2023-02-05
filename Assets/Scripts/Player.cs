@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     }
     GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
     bulletGO.GetComponent<Bullet>().Initialize(aimDirection, bulletPrefab.Speed);
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BigGun01, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BigGun01, AudioCategory.Sfx, 0.8f);
     shootTimer = shootDelay;
     isShooting = true;
     animator.SetBool("isShooting", isShooting);
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
     Debug.Log("Player taking damage! " + amt);
     animator.SetTrigger("hurt");
     health -= amt;
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerHit, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerHit, AudioCategory.Sfx, 3.0f);
     if (health <= 0)
       Die();
   }
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
   private void Die() {
     // TODO: PLAY DIE ANIMATION
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerDie, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerDie, AudioCategory.Sfx, 3.0f);
     // TODO: GAME OVER LOGIC AND WHAT NOT
   }
 

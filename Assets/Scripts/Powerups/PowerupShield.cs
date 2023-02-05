@@ -17,7 +17,7 @@ public class PowerupShield : PowerupBase {
   }
 
   protected override void PlayPowerupSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.Shield, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.Shield, AudioCategory.Sfx, 6.0f);
   }
   
 }
