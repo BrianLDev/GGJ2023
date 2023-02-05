@@ -15,10 +15,24 @@ namespace EcxUtilities {
     /// </summary>
     [CreateAssetMenu(fileName = "SfxManager", menuName = "ECX Utilities/SfxManager", order = 1)] 
     public class SfxManager : ScriptableObject {
-        [Header("General FX")]
+        [Header("Player SFX")]
+        public AudioClip PlayerHit;
+        public AudioClip PlayerDie;
+        [Header("Enemy SFX")]
+        public AudioClip CrabHit;
+        public AudioClip CrabDie;
+        public AudioClip JumperHit;
+        public AudioClip JumperDie;
+        public AudioClip OctopusHit;
+        public AudioClip OctopusDie;
+        public AudioClip BioMechHit;
+        public AudioClip BioMechDie;
+        [Header("Powerup SFX")]
+        public AudioClip Health;
+        public AudioClip Shield;
+        [Header("General SFX")]
         public AudioClip AmbientNoise;
         public AudioClip ShutDown;
-
         [Header("Weapon SFX")]
         public AudioClip BigGun01;
         public AudioClip BigGun02;

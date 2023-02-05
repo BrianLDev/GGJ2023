@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using EcxUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -102,17 +101,18 @@ public class Player : MonoBehaviour
   }
 
   public void Cling() {
-
+    // TODO: CLING MECHANIC
   }
 
   public void Duck() {
-
+    // TODO: DUCK MECHANIC
   }
 
   public void TakeDamage(float amt) {
     Debug.Log("Player taking damage! " + amt);
     animator.SetTrigger("hurt");
     health -= amt;
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerHit, AudioCategory.Sfx);
     if (health <= 0)
       Die();
   }
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
   private void Die() {
     // TODO: PLAY DIE ANIMATION
-    // TODO: DIE SFX
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerDie, AudioCategory.Sfx);
     // TODO: GAME OVER LOGIC AND WHAT NOT
   }
 

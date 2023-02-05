@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EcxUtilities;
 
 public class BioMech : EnemyBase {
   public enum BioMechState { Idle, WalkLeft, WalkRight, AttackLeft, AttackRight, Dead }
@@ -70,9 +71,18 @@ public class BioMech : EnemyBase {
 
   protected override void Die() {
     // TODO: DIE ANIMATION (IF THERE IS ONE)
-    // TODO: PLAY SFX
     // TODO: GENERATE LOOT OR POWERUP
+    PlayHurtSFX();
     Destroy(transform.gameObject, 0.3f);
+  }
+
+  // Note - EnemyBase calls PlayHurtSFX
+  protected override void PlayHurtSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BioMechHit, AudioCategory.Sfx);
+  }
+
+  protected override void PlayDieSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BioMechDie, AudioCategory.Sfx);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

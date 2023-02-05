@@ -1,4 +1,5 @@
 using UnityEngine;
+using EcxUtilities;
 
 public class PowerupShield : PowerupBase {
   [SerializeField] private float shieldAmt = 25f;
@@ -10,9 +11,13 @@ public class PowerupShield : PowerupBase {
   private void OnTriggerEnter2D(Collider2D other) {
     if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
       other.gameObject.GetComponent<Player>().ShieldChange(shieldAmt);
-      // TODO: PLAY SFX
+      PlayPowerupSFX();
       Destroy(gameObject, .01f);
     }
+  }
+
+  protected override void PlayPowerupSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.Shield, AudioCategory.Sfx);
   }
   
 }
