@@ -55,7 +55,7 @@ public class Octopus : EnemyBase {
   protected override void Die() {
     // TODO: DIE ANIMATION (IF THERE IS ONE)
     // TODO: GENERATE LOOT OR POWERUP
-    PlayHurtSFX();
+    PlayDieSFX();
     Destroy(transform.gameObject, 0.3f);
   }
 
@@ -65,7 +65,7 @@ public class Octopus : EnemyBase {
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx, 6.0f);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx, 0.8f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {
