@@ -220,9 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed515c7e2c2c46abbd00e7a067a8de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7605181867176876724, guid: a4f8c0fd460c14fb6abdb8a25d609489, type: 3}
+  maxHealth: 100
   accelForce: 7
   maxSpeed: 2
   shootDelay: 0.15
   jumpForce: 4
   jumpDelay: 0.4
-  bulletPrefab: {fileID: 7605181867176876724, guid: a4f8c0fd460c14fb6abdb8a25d609489, type: 3}
+  knockbackForce: 2.5

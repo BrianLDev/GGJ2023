@@ -1,17 +1,22 @@
 using System;
 using System.Collections;
-using UnityEditor.Rendering;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+  public float Health => health;
+  public float MaxHealth => maxHealth;
+  [SerializeField] private Bullet bulletPrefab;
+  [SerializeField] private float maxHealth = 100f;
   [SerializeField] private float accelForce = 6f;
   [SerializeField] private float maxSpeed = 2f;
   [SerializeField] private float shootDelay = 0.15f;
   [SerializeField] private float jumpForce = 4f;
   [SerializeField] private float jumpDelay = 0.4f;
-  [SerializeField] private Bullet bulletPrefab;
+  [SerializeField] private float knockbackForce = 2f;
+  private float health;
   private Vector2 moveInput;
   private Vector3 acceleration;
   private Rigidbody2D rb;
@@ -89,8 +94,27 @@ public class Player : MonoBehaviour
 
   }
 
-  public void Hurt() {
+  public void TakeDamage(float amt) {
+    Debug.Log("Player taking damage! " + amt);
+    health -= amt;
+    if (health <= 0)
+      Die();
+  }
 
+  public void Heal(float amt) {
+    health += amt;
+    if (health >= maxHealth)
+      health = maxHealth;
+  }
+
+  public void KnockBack(Vector2 dir, float multiplier = 1f) {
+    rb.AddForce(dir * knockbackForce * multiplier, ForceMode2D.Impulse);
+  }
+
+  private void Die() {
+    // TODO: PLAY DIE ANIMATION
+    // TODO: DIE SFX
+    // TODO: GAME OVER LOGIC AND WHAT NOT
   }
 
   // INPUT

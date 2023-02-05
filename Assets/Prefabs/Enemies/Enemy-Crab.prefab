@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4683999505473509634}
   - component: {fileID: 4683999505473509632}
   - component: {fileID: 4683999505473509633}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,9 +116,10 @@ GameObject:
   - component: {fileID: 4683999506606852546}
   - component: {fileID: 4683999506606852547}
   - component: {fileID: 4683999506606852556}
-  m_Layer: 0
+  - component: {fileID: 542287418}
+  m_Layer: 7
   m_Name: Enemy-Crab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,3 +177,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.03}
   serializedVersion: 2
   m_Radius: 0.11
+--- !u!114 &542287418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683999506606852557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e68dbc1cdee544ee96fd880fa1e1f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage: 5

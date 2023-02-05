@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+  [SerializeField] private float damage = 20f;    // default value.  Override on prefabs if needed
   [SerializeField] private float speed = 2f;      // default value.  Override on prefabs if needed
   [SerializeField] private float lifetime = 10f;  // default value.  Override on prefabs if needed
   public float Speed => speed;
@@ -38,10 +39,12 @@ public class Bullet : MonoBehaviour
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {
-    // TODO: DAMAGE THE OBJECT
-    // TODO: PLAY SFX
     rb.velocity = Vector3.zero;
     animator.SetTrigger("collision");
+    if (coll.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+      coll.gameObject.GetComponent<EnemyBase>().TakeDamage(damage);
+    }
+    // TODO: PLAY SFX
     Destroy(transform.gameObject, 0.25f);
   }
 }
