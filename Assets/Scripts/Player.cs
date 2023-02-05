@@ -9,8 +9,11 @@ public class Player : MonoBehaviour
 {
   public float Health => health;
   public float MaxHealth => maxHealth;
+  public float Shield => shield;
+  public float MaxShield => MaxShield;
   [SerializeField] private Bullet bulletPrefab;
   [SerializeField] private float maxHealth = 100f;
+  [SerializeField] private float maxShield = 100f;
   [SerializeField] private float accelForce = 6f;
   [SerializeField] private float maxSpeed = 2f;
   [SerializeField] private float shootDelay = 0.15f;
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
   [SerializeField] private float jumpDelay = 0.4f;
   [SerializeField] private float knockbackForce = 2f;
   private float health;
+  private float shield;
   private Vector2 moveInput;
   private Vector3 acceleration;
   private Vector3 aimDirection;
@@ -33,6 +37,11 @@ public class Player : MonoBehaviour
     rb = GetComponent<Rigidbody2D>();
     animator = GetComponentInChildren<Animator>();
     spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+  }
+
+  private void Start() {
+    health = maxHealth;
+    shield = 0;
   }
 
   private void Update() {
@@ -108,14 +117,19 @@ public class Player : MonoBehaviour
       Die();
   }
 
+  public void KnockBack(Vector2 dir, float multiplier = 1f) {
+    rb.AddForce(dir * knockbackForce * multiplier, ForceMode2D.Impulse);
+  }
+
   public void Heal(float amt) {
     health += amt;
     if (health >= maxHealth)
       health = maxHealth;
   }
 
-  public void KnockBack(Vector2 dir, float multiplier = 1f) {
-    rb.AddForce(dir * knockbackForce * multiplier, ForceMode2D.Impulse);
+  public void ShieldChange(float amt) {
+    shield += amt;
+    shield = Math.Clamp(shield, 0, maxShield);
   }
 
   private void Die() {

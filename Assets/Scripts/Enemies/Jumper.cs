@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crab : EnemyBase {
-  public enum CrabState { Idle, WalkLeft, WalkRight }
+public class Jumper : EnemyBase {
+  public enum JumperState { Idle, JumpLeft, JumpRight }
 
-  [SerializeField] private float damage;
-  [SerializeField] private float walkSpeed = 0.5f;
-  [SerializeField] private float stateDuration = 3f;
-  private CrabState crabState = CrabState.Idle;
+  [SerializeField] private float damage = 20f;
+  [SerializeField] private float jumpForce = 4f;
+  [SerializeField] private float stateDuration = 1f;
+  private JumperState jumperState = JumperState.Idle;
   private float stateTimer = 0;
   private Rigidbody2D rb;
   private Animator animator;
@@ -30,31 +30,27 @@ public class Crab : EnemyBase {
     if (stateTimer <= 0) {
       stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
       int random = Random.Range(0, 3);
-      ChangeStates((CrabState)random);
+      ChangeStates((JumperState)random);
     }
+    // flip facing up/down
+    if (rb.velocity.y > 0.1f)
+      spriteRenderer.flipY = true;
+    else
+      spriteRenderer.flipY = false;
   }
 
-  protected void FixedUpdate() {
-    // handle movement
-    if (crabState == CrabState.WalkLeft)
-      transform.position += Vector3.left * walkSpeed * Time.deltaTime;
-    else if (crabState == CrabState.WalkRight)
-      transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-  }
-
-  protected void ChangeStates(CrabState newState) {
-    crabState = newState;
-    if (crabState == CrabState.Idle) {
+  protected void ChangeStates(JumperState newState) {
+    jumperState = newState;
+    if (jumperState == JumperState.Idle) {
       rb.velocity = Vector3.zero;
-      animator.SetBool("isWalking", false);
     }
-    else if (crabState == CrabState.WalkLeft) {
-      spriteRenderer.flipX = false;
-      animator.SetBool("isWalking", true);
+    else if (jumperState == JumperState.JumpLeft) {
+      rb.AddForce((Vector2.up + Vector2.left) * jumpForce, ForceMode2D.Impulse);
+      animator.SetTrigger("jump");
     }
-    else if (crabState == CrabState.WalkRight) {
-      spriteRenderer.flipX = true;
-      animator.SetBool("isWalking", true);
+    else if (jumperState == JumperState.JumpRight) {
+      rb.AddForce((Vector2.up + Vector2.right) * jumpForce, ForceMode2D.Impulse);
+      animator.SetTrigger("jump");
     }
   }
 
