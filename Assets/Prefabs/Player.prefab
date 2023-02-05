@@ -226,5 +226,5 @@ MonoBehaviour:
   maxSpeed: 2
   shootDelay: 0.15
   jumpForce: 4
-  jumpDelay: 0.4
+  jumpDelay: 0.35
   knockbackForce: 2.5

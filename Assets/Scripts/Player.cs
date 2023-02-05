@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,7 +43,6 @@ public class Player : MonoBehaviour
     }
     // Handle Jump timer and state
     jumpTimer -= Time.deltaTime;
-    // TODO: CHECK FOR GROUNDED INSTEAD
     if (jumpTimer <= 0) {
       isJumping = false;
       animator.SetBool("isJumping", isJumping);
@@ -50,13 +50,15 @@ public class Player : MonoBehaviour
   }
 
   public void FixedUpdate() {
+    // face left/right
+    if (moveInput.x > 0.1f || moveInput.x < -0.1f)
+      spriteRenderer.flipX = (moveInput.x >= 0) ? false : true;
     // Movement
     acceleration.x = moveInput.x * accelForce;
     if (rb.velocity.x <= maxSpeed && acceleration.x > 0) 
       rb.AddForce(acceleration);
     else if (rb.velocity.x >= -maxSpeed && acceleration.x < 0) 
       rb.AddForce(acceleration);
-    spriteRenderer.flipX = (rb.velocity.x >= 0) ? false : true;
     animator.SetFloat("movement", Math.Abs(rb.velocity.x));
   }
 
@@ -68,7 +70,6 @@ public class Player : MonoBehaviour
     if (bulletPrefab == null)
       Debug.LogError("Error: missing bullet prefab, can't shoot");
     else {
-      aimDirection = moveInput;
       GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
       // TODO: CHANGE BULLET DIRECTION TO AIM DIRECTION INSTEAD OF RB.VELOCITY
       bulletGO.GetComponent<Bullet>().Initialize(aimDirection, bulletPrefab.Speed);
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     jumpTimer = jumpDelay;
     isJumping = true;
+    animator.SetTrigger("jump");
     animator.SetBool("isJumping", isJumping);
   }
 
@@ -97,6 +99,7 @@ public class Player : MonoBehaviour
 
   public void TakeDamage(float amt) {
     Debug.Log("Player taking damage! " + amt);
+    animator.SetTrigger("hurt");
     health -= amt;
     if (health <= 0)
       Die();
@@ -116,6 +119,22 @@ public class Player : MonoBehaviour
     // TODO: PLAY DIE ANIMATION
     // TODO: DIE SFX
     // TODO: GAME OVER LOGIC AND WHAT NOT
+  }
+
+  private void OnCollisionEnter2D(Collision2D coll) {
+    // stop jumping when hit the ground going down
+    if (coll.gameObject.layer == LayerMask.NameToLayer("Ground") && rb.velocity.y <= 0) {
+      isJumping = false;
+      animator.SetBool("isJumping", isJumping);
+    }
+    // TODO: CLING MECHANIC
+    // cling to walls
+    // if (coll.gameObject.layer == LayerMask.NameToLayer("Walls")) {
+    //   rb.velocity = Vector3.zero;
+    //   isJumping = false;
+    //   animator.SetBool("isJumping", isJumping);
+    //   animator.SetTrigger("cling");
+    // }
   }
 
   // INPUT
