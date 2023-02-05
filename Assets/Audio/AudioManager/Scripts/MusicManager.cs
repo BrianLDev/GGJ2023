@@ -20,41 +20,22 @@ namespace EcxUtilities {
     public class MusicManager : ScriptableObject {
 
         [Header("Standard Music Tracks")]
-        public AudioClip mainMenuMusic;
-        public AudioClip gameMusic;
-        public AudioClip gameOverMusic;
+        public AudioClip MainMenuMusic; // Splash
+        public AudioClip Canal;
+        public AudioClip Respite;
+        public AudioClip TheStructure;
+        public AudioClip LowerLevels;
+        public AudioClip GameOverMusic;
 
         [Header("Win/Loss Stingers")]
-        public AudioClip victoryStinger;
-        public AudioClip defeatStinger;
+        public AudioClip ObjectiveCompleteStinger;
+        public AudioClip VictoryStinger;
+        public AudioClip DefeatStinger;
 
         // [Header("Game Specific Music Tracks")]   // UNCOMMENT THIS HEADER, RENAME IT, AND ADD ANY ADDITIONAL AUDIO CLIPS BELOW. THEN DRAG/DROP THEM IN THE UNITY EDITOR.
 
         
         // METHODS:
-        private void Awake() {
-          SceneManager.sceneLoaded += OnSceneLoaded;  // subscribe to OnSceneLoaded event to play music for that scene
-          // check to make sure Audioclips have been assigned.  Add more as needed
-          if (!mainMenuMusic) { Debug.LogWarning("Warning: MusicManager is missing AudioClip for mainMenuMusic"); }
-          if (!gameMusic) { Debug.LogWarning("Warning: MusicManager is missing AudioClip for gameMusic"); }
-          if (!gameOverMusic) { Debug.LogWarning("Warning: MusicManager is missing AudioClip for gameOverMusic"); }
-        }
 
-        // TODO: FIGURE OUT A BETTER WAY TO CONNECT MUSIC WITH RELATED SCENE.  BUILD INDEXES COULD CHANGE.
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-          if (AudioManager.Instance.playMusicOnStart == true) {
-            // UPDATE MUSIC AS NEEDED FOR VARIOUS SCENES AND BUILD INDEXES
-            if (scene.buildIndex == 0)      // Main Menu
-                AudioManager.Instance.PlayMusic(mainMenuMusic, true, 0.2f);
-            else if (scene.buildIndex == 1) // Game
-                AudioManager.Instance.PlayMusic(gameMusic, true, 0.2f);
-            else if (scene.buildIndex == 2) // Game Over
-                AudioManager.Instance.PlayMusic(gameOverMusic, true, 0.2f);
-          }
-        }
-
-        private void OnDestroy() {
-            SceneManager.sceneLoaded -= OnSceneLoaded;  // unsubscribe to OnSceneLoaded event to play music for that scene
-        }
     }
 }
