@@ -1,5 +1,5 @@
 .menu__button {
-    width: 70%;
+    width: 35%;
     height: 80%;
     -unity-background-scale-mode: stretch-to-fill;
     font-size: 30px;
