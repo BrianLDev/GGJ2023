@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EcxUtilities;
 using UnityEngine;
 
 public class Crab : EnemyBase {
@@ -59,10 +60,19 @@ public class Crab : EnemyBase {
   }
 
   protected override void Die() {
+    PlayDieSFX();
     // TODO: DIE ANIMATION (IF THERE IS ONE)
-    // TODO: PLAY SFX
     // TODO: GENERATE LOOT OR POWERUP
     Destroy(transform.gameObject, 0.3f);
+  }
+
+  // Note - EnemyBase calls PlayHurtSFX
+  protected override void PlayHurtSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabHit, AudioCategory.Sfx, 2.5f);
+  }
+
+  protected override void PlayDieSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabDie, AudioCategory.Sfx, 2.0f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

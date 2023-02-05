@@ -16,6 +16,7 @@ public abstract class EnemyBase : MonoBehaviour
   public void TakeDamage(float amt) {
     Debug.Log(this.name + " taking damage! " + amt);
     health -= amt;
+    PlayHurtSFX();
     if (health <= 0)
       Die();
   }
@@ -26,5 +27,8 @@ public abstract class EnemyBase : MonoBehaviour
       health = maxHealth;
   }
 
+  protected abstract void PlayHurtSFX();
+  protected abstract void PlayDieSFX();
   protected abstract void Die();
+  
 }

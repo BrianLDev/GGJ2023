@@ -6,4 +6,5 @@ public abstract class PowerupBase : MonoBehaviour {
   public enum PowerupType { Health, Shield, Weapon }
   protected PowerupType powerupType;
 
+  protected abstract void PlayPowerupSFX();
 }

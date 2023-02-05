@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EcxUtilities;
 
 public class Jumper : EnemyBase {
   public enum JumperState { Idle, JumpLeft, JumpRight }
@@ -56,9 +57,18 @@ public class Jumper : EnemyBase {
 
   protected override void Die() {
     // TODO: DIE ANIMATION (IF THERE IS ONE)
-    // TODO: PLAY SFX
     // TODO: GENERATE LOOT OR POWERUP
+    PlayDieSFX();
     Destroy(transform.gameObject, 0.3f);
+  }
+
+  // Note - EnemyBase calls PlayHurtSFX
+  protected override void PlayHurtSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.JumperHit, AudioCategory.Sfx, 0.8f);
+  }
+
+  protected override void PlayDieSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.JumperDie, AudioCategory.Sfx, 2.0f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

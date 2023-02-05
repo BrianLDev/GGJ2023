@@ -38,7 +38,7 @@ public class MainMenu : Menu
     void StartGame(ClickEvent clickEvent)
     {
         Debug.Log("MainMenu: StartGame called, loading scene 'Test'");
-        SceneManager.LoadScene("Testing Game Screens");
+        SceneManager.LoadScene(1);
     }
 
     /// <summary>
@@ -48,6 +48,10 @@ public class MainMenu : Menu
     void ExitGame(ClickEvent clickEvent)
     {
         Debug.Log("MainMenu: ExitGame called");
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }

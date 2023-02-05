@@ -12,6 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ff59fbb2b7441bc9732677e1efc538, type: 3}
   m_Name: SfxManager
   m_EditorClassIdentifier: 
+  PlayerJump: {fileID: 8300000, guid: 8c41cc18b0b1c41ecba1ebd5145bf6ef, type: 3}
+  PlayerHit: {fileID: 8300000, guid: 996404a41b3244c99ac5d1533408ab00, type: 3}
+  PlayerDie: {fileID: 8300000, guid: bef4ae7c45f284d8b85ebf0007a687f5, type: 3}
+  CrabHit: {fileID: 8300000, guid: f99eb3891fe654333a3bc3c705316761, type: 3}
+  CrabDie: {fileID: 8300000, guid: 41768c9f89eb54f56a78d53d6de8a4b4, type: 3}
+  JumperHit: {fileID: 8300000, guid: e569fa0bbc5554b36b859201af616062, type: 3}
+  JumperDie: {fileID: 8300000, guid: 780eabdf1ed7d4c64bbe15e447ef8e0c, type: 3}
+  OctopusHit: {fileID: 8300000, guid: 642171a47053643a4a9d4f2558c0f935, type: 3}
+  OctopusDie: {fileID: 8300000, guid: 5e6f6285b35d546d58e58b239fcc3fa2, type: 3}
+  BioMechHit: {fileID: 8300000, guid: b0df1081cf7844407a3dc1a33f9791c7, type: 3}
+  BioMechDie: {fileID: 8300000, guid: 1a8acbcdac4b74b73abfb44c078bae51, type: 3}
+  Health: {fileID: 8300000, guid: eb938af42ad344aaf837bfd477bdb202, type: 3}
+  Shield: {fileID: 8300000, guid: 9ecd559c7490943d9855291ee7a03554, type: 3}
   AmbientNoise: {fileID: 8300000, guid: 2945e2780cbd6449e8664f5f9f534d70, type: 3}
   ShutDown: {fileID: 8300000, guid: 33ee1a1b2cdd5455bbad44d50cbb0ad9, type: 3}
   BigGun01: {fileID: 8300000, guid: 7accc6aef5c6b4adb9fc5333d5143641, type: 3}

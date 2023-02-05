@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EcxUtilities;
 
 public class Octopus : EnemyBase {
   public enum OctopusState { Idle, Moving }
@@ -49,14 +50,22 @@ public class Octopus : EnemyBase {
       direction = Random.insideUnitCircle;
       rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
-
   }
 
   protected override void Die() {
     // TODO: DIE ANIMATION (IF THERE IS ONE)
-    // TODO: PLAY SFX
     // TODO: GENERATE LOOT OR POWERUP
+    PlayDieSFX();
     Destroy(transform.gameObject, 0.3f);
+  }
+
+  // Note - EnemyBase calls PlayHurtSFX
+  protected override void PlayHurtSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusHit, AudioCategory.Sfx, 4.5f);
+  }
+
+  protected override void PlayDieSFX() {
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx, 0.8f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {
