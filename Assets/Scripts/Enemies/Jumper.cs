@@ -58,7 +58,7 @@ public class Jumper : EnemyBase {
   protected override void Die() {
     // TODO: DIE ANIMATION (IF THERE IS ONE)
     // TODO: GENERATE LOOT OR POWERUP
-    PlayHurtSFX();
+    PlayDieSFX();
     Destroy(transform.gameObject, 0.3f);
   }
 
