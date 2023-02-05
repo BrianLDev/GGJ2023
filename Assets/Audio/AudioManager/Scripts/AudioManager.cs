@@ -327,12 +327,20 @@ namespace EcxUtilities {
         /// Note: need to subscribe in Awake (SceneManager.sceneLoaded += OnSceneLoaded;) unsubscribe in OnDestroy (SceneManager.sceneLoaded -= OnSceneLoaded;)
         /// </summary>
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+            Debug.Log("playing music");
+            // UPDATE MUSIC AS NEEDED FOR VARIOUS SCENES AND BUILD INDEXES
             if (scene.buildIndex == 0)      // Main Menu
-                AudioManager.Instance.PlayMusic(MusicManager.mainMenuMusic, true, 0.2f);
-            else if (scene.buildIndex == 1) // Game
-                AudioManager.Instance.PlayMusic(MusicManager.gameMusic, true, 0.2f);
-            else if (scene.buildIndex == 2) // Game Over
-                AudioManager.Instance.PlayMusic(MusicManager.gameOverMusic, true, 0.2f);
+                AudioManager.Instance.PlayMusic(MusicManager.MainMenuMusic, true, 0.2f);
+            else if (scene.buildIndex == 1) // Level 1
+                AudioManager.Instance.PlayMusic(MusicManager.TheStructure, true, 0.2f);
+            else if (scene.buildIndex == 2) // Level 2
+                AudioManager.Instance.PlayMusic(MusicManager.LowerLevels, true, 0.2f);
+            else if (scene.buildIndex == 3) // Level 3
+                AudioManager.Instance.PlayMusic(MusicManager.Respite, true, 0.2f);
+            else if (scene.buildIndex == 4) // Level 4
+                AudioManager.Instance.PlayMusic(MusicManager.Canal, true, 0.2f);
+            else if (scene.buildIndex == 5) // Game Over
+                AudioManager.Instance.PlayMusic(MusicManager.GameOverMusic, true, 0.2f);
         }
 
         private void OnDestroy() {

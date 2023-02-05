@@ -15,8 +15,16 @@ namespace EcxUtilities {
     /// </summary>
     [CreateAssetMenu(fileName = "SfxManager", menuName = "ECX Utilities/SfxManager", order = 1)] 
     public class SfxManager : ScriptableObject {
-        [Header("Sound FX")]  // Change as needed
-        public AudioClip sfx01;
+        [Header("General FX")]
+        public AudioClip AmbientNoise;
+        public AudioClip ShutDown;
+
+        [Header("Weapon SFX")]
+        public AudioClip BigGun01;
+        public AudioClip BigGun02;
+        public AudioClip BigGun03;
+        public AudioClip MedGunAuto;
+        public AudioClip TinyGunAuto;
 
 
         // METHODS:

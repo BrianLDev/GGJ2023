@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5be0ec0931a44009542adbcf7845c5, type: 3}
   m_Name: MusicManager
   m_EditorClassIdentifier: 
-  mainMenuMusic: {fileID: 8300000, guid: acd1adfe4951e4b2a94016e61033d570, type: 3}
-  gameMusic: {fileID: 8300000, guid: acd1adfe4951e4b2a94016e61033d570, type: 3}
-  gameOverMusic: {fileID: 8300000, guid: acd1adfe4951e4b2a94016e61033d570, type: 3}
-  victoryStinger: {fileID: 8300000, guid: c59f6fc35f5d74c60b644832e3de858b, type: 3}
-  defeatStinger: {fileID: 8300000, guid: c59f6fc35f5d74c60b644832e3de858b, type: 3}
+  MainMenuMusic: {fileID: 8300000, guid: 652fd52f9d4d94001835545696d70bc2, type: 3}
+  Canal: {fileID: 8300000, guid: e4374765212cb4a69b6cf0bd38cb9b31, type: 3}
+  Respite: {fileID: 8300000, guid: 8c062414eabac4c878b8ed78c852e49b, type: 3}
+  TheStructure: {fileID: 8300000, guid: a8698b96830cb4100b7d04bc07ef2702, type: 3}
+  LowerLevels: {fileID: 8300000, guid: 271020007ee364826900d26abc75e7cf, type: 3}
+  GameOverMusic: {fileID: 8300000, guid: 652fd52f9d4d94001835545696d70bc2, type: 3}
+  ObjectiveCompleteStinger: {fileID: 8300000, guid: bd4de7c8b44264f8f9f542b0f141d34e, type: 3}
+  VictoryStinger: {fileID: 8300000, guid: b048fb530684444e1949528f6702241c, type: 3}
+  DefeatStinger: {fileID: 8300000, guid: 33ee1a1b2cdd5455bbad44d50cbb0ad9, type: 3}

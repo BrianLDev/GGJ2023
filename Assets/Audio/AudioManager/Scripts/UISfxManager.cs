@@ -18,9 +18,11 @@ namespace EcxUtilities {
     public class UISfxManager : ScriptableObject {
 
         [Header("Standard UI SFX")]
-        public AudioClip mouseOver;
-        public AudioClip buttonClick;
-        public AudioClip errorSound;
+        public AudioClip MouseOver;
+        public AudioClip ButtonClick;
+        public AudioClip Confirm;
+        public AudioClip Toggle;
+        public AudioClip ErrorSound;
 
         // [Header("Game Specific UI SFX")] // UNCOMMENT THIS HEADER, RENAME IT, AND ADD ANY ADDITIONAL AUDIO CLIPS BELOW. THEN DRAG/DROP THEM IN THE UNITY EDITOR.
 
