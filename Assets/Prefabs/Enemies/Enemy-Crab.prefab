@@ -192,4 +192,4 @@ MonoBehaviour:
   maxHealth: 100
   damage: 5
   walkSpeed: 0.5
-  stateDuration: 3
+  stateDuration: 2

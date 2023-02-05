@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour
   private float health;
   private Vector2 moveInput;
   private Vector3 acceleration;
+  private Vector3 aimDirection;
   private Rigidbody2D rb;
   private Animator animator;
   private SpriteRenderer spriteRenderer;
@@ -68,9 +68,10 @@ public class Player : MonoBehaviour
     if (bulletPrefab == null)
       Debug.LogError("Error: missing bullet prefab, can't shoot");
     else {
+      aimDirection = moveInput;
       GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
       // TODO: CHANGE BULLET DIRECTION TO AIM DIRECTION INSTEAD OF RB.VELOCITY
-      bulletGO.GetComponent<Bullet>().Initialize(rb.velocity.normalized, bulletPrefab.Speed);
+      bulletGO.GetComponent<Bullet>().Initialize(aimDirection, bulletPrefab.Speed);
     }
     shootTimer = shootDelay;
     isShooting = true;
