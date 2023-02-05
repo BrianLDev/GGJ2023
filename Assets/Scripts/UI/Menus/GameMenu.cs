@@ -15,6 +15,8 @@ public class GameMenu : MonoBehaviour
     private const string _restartButtonID = "restart__button";
     private const string _continueButtonID = "continue__button";
     private const string _exitMissionButtonID = "exitMission__button";
+    private const string _continueDialogueButtonID = "continueDialogue__button";
+    private const string _playerDialogueLabelID = "playerDialogue__label";
 
     private const string _playerShieldBarID = "playerShieldBar";
     private const string _playerHealthBarID = "playerHealthBar";
@@ -26,6 +28,7 @@ public class GameMenu : MonoBehaviour
     private VisualElement _pauseMenuRef;
     private VisualElement _gameWonMenuRef;
     private VisualElement _gameLostMenuRef;
+    private VisualElement _playerDialogueComponentRef;
     private VisualElement _playerHealthBarRef;
     private VisualElement _playerShieldBarRef;
     private VisualElement _playerAmmoBarRef;
@@ -34,6 +37,9 @@ public class GameMenu : MonoBehaviour
     private Button _restartButtonRef;
     private Button _continueButtonRef;
     private Button _exitMissionButtonRef;
+    private Button _continueDialogueButtonRef;
+
+    private Label _playerDialogueLabelRef;
 
     private bool _isGameOver;
 
@@ -48,6 +54,9 @@ public class GameMenu : MonoBehaviour
 
     [SerializeField]
     string GameLostMenuID = "GameLostMenu";
+
+    [SerializeField]
+    string PlayerDialogueComponentID = "PlayerDialogue";
 
     [Header("Blur")] 
     [Tooltip("Volume used to blur")] 
@@ -76,40 +85,40 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// On frame update, check for key presses
     /// </summary>
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
-    //     {
-    //         Debug.Log("GameMenu.cs: Escape key pressed");
-    //         ShowPauseMenu();
-    //     }
+    void Update()
+    {
+        if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
+        {
+            Debug.Log("GameMenu.cs: Escape key pressed");
+            ShowPauseMenu();
+        }
 
-    //     if (Input.GetKeyDown("m"))
-    //     {
-    //         Debug.Log("GameMenu.cs: M Pressed");
-    //         GainShield(20);
-    //     }
+        if (Input.GetKeyDown("m"))
+        {
+            Debug.Log("GameMenu.cs: M Pressed");
+            ShowPlayerDialogue("What happened... is that an alien");
+        }
 
-    //     if (Input.GetKeyDown("k"))
-    //     {
-    //         Debug.Log("GameMenu.cs: K Pressed");
-    //         ReduceHealth(10);
+        if (Input.GetKeyDown("k"))
+        {
+            Debug.Log("GameMenu.cs: K Pressed");
+            ReduceHealth(10);
 
-    //     }
+        }
 
-    //     if (Input.GetKeyDown("l"))
-    //     {
-    //         Debug.Log("GameMenu.cs: L Pressed");
-    //         GainHealth(10);
-    //     }
+        if (Input.GetKeyDown("l"))
+        {
+            Debug.Log("GameMenu.cs: L Pressed");
+            GainHealth(10);
+        }
 
-    //     if (Input.GetKeyDown("o"))
-    //     {
-    //         Debug.Log("GameMenu.cs: K Pressed");
-    //         ReduceAmmo(10);
+        if (Input.GetKeyDown("o"))
+        {
+            Debug.Log("GameMenu.cs: K Pressed");
+            ReduceAmmo(10);
 
-    //     }
-    // }
+        }
+    }
 
     /// <summary>
     /// The general workflow uses string IDs to query the VisualTreeAsset and find matching Visual Elements in the UXML.
@@ -123,6 +132,7 @@ public class GameMenu : MonoBehaviour
         _pauseMenuRef = _root.Query(PauseMenuID);
         _gameWonMenuRef = _root.Query(GameWonMenuID);
         _gameLostMenuRef = _root.Query(GameLostMenuID);
+        _playerDialogueComponentRef = _root.Query(PlayerDialogueComponentID);
         _playerShieldBarRef = _root.Query<VisualElement>(_playerShieldBarID);
         _playerHealthBarRef = _root.Query<VisualElement>(_playerHealthBarID);
         _playerAmmoBarRef = _root.Query<VisualElement>(_playerAmmoBarID);
@@ -131,8 +141,11 @@ public class GameMenu : MonoBehaviour
         _restartButtonRef = _root.Query<Button>(_restartButtonID);
         _continueButtonRef = _root.Query<Button>(_continueButtonID);
         _exitMissionButtonRef = _root.Query<Button>(_exitMissionButtonID);
+        _continueDialogueButtonRef = _root.Query<Button>(_continueDialogueButtonID);
 
-        
+        _playerDialogueLabelRef = _root.Query<Label>(_playerDialogueLabelID);
+
+
     }
 
     /// <summary>
@@ -144,6 +157,7 @@ public class GameMenu : MonoBehaviour
         _continueButtonRef?.RegisterCallback<ClickEvent>(ContinueGame);
         _restartButtonRef?.RegisterCallback<ClickEvent>(RestartGame);
         _exitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _continueDialogueButtonRef?.RegisterCallback<ClickEvent>(ContinueDialogue);
     }
 
     /// <summary>
@@ -329,6 +343,22 @@ public class GameMenu : MonoBehaviour
 
         ShowVisualElement(_pauseMenuRef, false);
         BlurBackground(false);
+    }
+
+    public void ShowPlayerDialogue(string dialogueText)
+    {
+        Debug.Log($"GameMenu.cs: Showing dialogue {dialogueText}");
+
+        _playerDialogueLabelRef.text = dialogueText;
+        ShowVisualElement(_playerDialogueComponentRef, true);
+    }
+
+    void ContinueDialogue(ClickEvent clickEvent)
+    {
+        Debug.Log("GameMenu.cs: Dialogue continued");
+        // Add continue logic
+
+        ShowVisualElement(_playerDialogueComponentRef, false);
     }
 
     /// <summary>
