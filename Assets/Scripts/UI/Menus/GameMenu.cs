@@ -19,7 +19,7 @@ public class GameMenu : MonoBehaviour
     private const string _playerShieldBarID = "playerShieldBar";
     private const string _playerHealthBarID = "playerHealthBar";
     private const string _playerAmmoBarID = "playerAmmoBar";
-    private const int _barSize = 200;
+    private const float _barSize = 100;
 
     private UIDocument _gameDocument;
     private VisualElement _root;
@@ -76,40 +76,40 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// On frame update, check for key presses
     /// </summary>
-    void Update()
-    {
-        if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
-        {
-            Debug.Log("GameMenu.cs: Escape key pressed");
-            ShowPauseMenu();
-        }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
+    //     {
+    //         Debug.Log("GameMenu.cs: Escape key pressed");
+    //         ShowPauseMenu();
+    //     }
 
-        if (Input.GetKeyDown("m"))
-        {
-            Debug.Log("GameMenu.cs: M Pressed");
-            GainShield(20);
-        }
+    //     if (Input.GetKeyDown("m"))
+    //     {
+    //         Debug.Log("GameMenu.cs: M Pressed");
+    //         GainShield(20);
+    //     }
 
-        if (Input.GetKeyDown("k"))
-        {
-            Debug.Log("GameMenu.cs: K Pressed");
-            ReduceHealth(10);
+    //     if (Input.GetKeyDown("k"))
+    //     {
+    //         Debug.Log("GameMenu.cs: K Pressed");
+    //         ReduceHealth(10);
 
-        }
+    //     }
 
-        if (Input.GetKeyDown("l"))
-        {
-            Debug.Log("GameMenu.cs: L Pressed");
-            GainHealth(10);
-        }
+    //     if (Input.GetKeyDown("l"))
+    //     {
+    //         Debug.Log("GameMenu.cs: L Pressed");
+    //         GainHealth(10);
+    //     }
 
-        if (Input.GetKeyDown("o"))
-        {
-            Debug.Log("GameMenu.cs: K Pressed");
-            ReduceAmmo(10);
+    //     if (Input.GetKeyDown("o"))
+    //     {
+    //         Debug.Log("GameMenu.cs: K Pressed");
+    //         ReduceAmmo(10);
 
-        }
-    }
+    //     }
+    // }
 
     /// <summary>
     /// The general workflow uses string IDs to query the VisualTreeAsset and find matching Visual Elements in the UXML.
@@ -161,7 +161,7 @@ public class GameMenu : MonoBehaviour
     /// Increases the health bar
     /// </summary>
     /// <param name="healthReceived">The health received</param>
-    public void GainHealth(int healthReceived)
+    public void GainHealth(float healthReceived)
     {
         Debug.Log($"GameMenu.cs: Health gained {healthReceived}");
         float healthBarValue = _playerHealthBarRef.style.width.value.value;
@@ -179,7 +179,7 @@ public class GameMenu : MonoBehaviour
     /// Increases the shield bar
     /// </summary>
     /// <param name="shieldGained">The shield gained</param>
-    public void GainShield(int shieldGained)
+    public void GainShield(float shieldGained)
     {
         Debug.Log($"GameMenu.cs: Shield gained {shieldGained}");
         float shieldBarValue = _playerShieldBarRef.style.width.value.value;
@@ -200,7 +200,7 @@ public class GameMenu : MonoBehaviour
     /// <remarks>If a shield is active, the shield is reduced instead of the health.
     /// Once the health reaches 0, the game over menu is shown.
     /// </remarks>
-    public void ReduceHealth(int damageTaken)
+    public void ReduceHealth(float damageTaken)
     {
         Debug.Log($"GameMenu.cs: Health reduced {damageTaken}");
         float shieldBarValue = _playerShieldBarRef.style.width.value.value;
@@ -236,7 +236,7 @@ public class GameMenu : MonoBehaviour
     /// Increases the ammo bar
     /// </summary>
     /// <param name="ammo">The ammo received</param>
-    public void GainAmmo(int ammo)
+    public void GainAmmo(float ammo)
     {
         Debug.Log($"GameMenu.cs: Ammo gained {ammo}");
         float ammoBarValue = _playerAmmoBarRef.style.width.value.value;
@@ -254,7 +254,7 @@ public class GameMenu : MonoBehaviour
     /// Reduces the ammo bar
     /// </summary>
     /// <param name="ammoExpended">The ammo expended</param>
-    public void ReduceAmmo(int ammoExpended)
+    public void ReduceAmmo(float ammoExpended)
     {
         Debug.Log($"GameMenu.cs: Ammo expended {ammoExpended}");
         float ammoBarValue = _playerAmmoBarRef.style.width.value.value;

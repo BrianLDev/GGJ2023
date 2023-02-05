@@ -16,6 +16,7 @@ namespace EcxUtilities {
     [CreateAssetMenu(fileName = "SfxManager", menuName = "ECX Utilities/SfxManager", order = 1)] 
     public class SfxManager : ScriptableObject {
         [Header("Player SFX")]
+        public AudioClip PlayerJump;
         public AudioClip PlayerHit;
         public AudioClip PlayerDie;
         [Header("Enemy SFX")]

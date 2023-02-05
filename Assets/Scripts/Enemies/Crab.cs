@@ -72,7 +72,7 @@ public class Crab : EnemyBase {
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabDie, AudioCategory.Sfx, 2.5f);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.CrabDie, AudioCategory.Sfx, 2.0f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

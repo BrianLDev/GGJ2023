@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
   private Rigidbody2D rb;
   private Animator animator;
   private SpriteRenderer spriteRenderer;
+  private GameMenu gameMenu;
   private bool isJumping = false;
   private bool isShooting = false;
   private float shootTimer = 0f;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
   }
 
   private void Start() {
+    gameMenu = FindObjectOfType<GameMenu>();
     health = maxHealth;
     shield = 0;
   }
@@ -84,7 +86,7 @@ public class Player : MonoBehaviour
     }
     GameObject bulletGO = Instantiate(bulletPrefab.gameObject, transform.position, Quaternion.identity);
     bulletGO.GetComponent<Bullet>().Initialize(aimDirection, bulletPrefab.Speed);
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BigGun01, AudioCategory.Sfx, 0.8f);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BigGun01, AudioCategory.Sfx, 0.6f);
     shootTimer = shootDelay;
     isShooting = true;
     animator.SetBool("isShooting", isShooting);
@@ -94,6 +96,7 @@ public class Player : MonoBehaviour
     if (jumpTimer >= 0)
       return;
     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerJump, AudioCategory.Sfx, 0.5f);
     jumpTimer = jumpDelay;
     isJumping = true;
     animator.SetTrigger("jump");
@@ -112,6 +115,7 @@ public class Player : MonoBehaviour
     Debug.Log("Player taking damage! " + amt);
     animator.SetTrigger("hurt");
     health -= amt;
+    gameMenu.ReduceHealth(amt);
     AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.PlayerHit, AudioCategory.Sfx, 3.0f);
     if (health <= 0)
       Die();
@@ -123,6 +127,7 @@ public class Player : MonoBehaviour
 
   public void Heal(float amt) {
     health += amt;
+    gameMenu.GainHealth(amt);
     if (health >= maxHealth)
       health = maxHealth;
   }

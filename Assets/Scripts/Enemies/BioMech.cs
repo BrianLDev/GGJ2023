@@ -27,11 +27,13 @@ public class BioMech : EnemyBase {
 
   protected void Update() {
     // choose state
-    stateTimer -= Time.deltaTime;
-    if (stateTimer <= 0) {
-      stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
-      int random = Random.Range(0, 5);
-      ChangeStates((BioMechState)random);
+    if (bioMechState != BioMechState.Dead) {
+      stateTimer -= Time.deltaTime;
+      if (stateTimer <= 0) {
+        stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
+        int random = Random.Range(0, 5);
+        ChangeStates((BioMechState)random);
+      }
     }
   }
 
@@ -70,19 +72,24 @@ public class BioMech : EnemyBase {
   }
 
   protected override void Die() {
-    // TODO: DIE ANIMATION (IF THERE IS ONE)
-    // TODO: GENERATE LOOT OR POWERUP
-    PlayHurtSFX();
-    Destroy(transform.gameObject, 0.3f);
+    if (bioMechState != BioMechState.Dead) {
+      // TODO: GENERATE LOOT OR POWERUP
+      bioMechState = BioMechState.Dead;
+      PlayDieSFX();
+      animator.SetTrigger("die");
+      spriteRenderer.flipX = true;
+      // Destroy(transform.gameObject, 5.0f);
+      // TODO: PLAY VICTORY STINGER AND SHOW VICTORY UI
+    }
   }
 
   // Note - EnemyBase calls PlayHurtSFX
   protected override void PlayHurtSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BioMechHit, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BioMechHit, AudioCategory.Sfx, 1.3f);
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BioMechDie, AudioCategory.Sfx);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.BioMechDie, AudioCategory.Sfx, 2.0f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {
