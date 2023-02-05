@@ -191,3 +191,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage: 5
+  walkSpeed: 0.5
+  stateDuration: 3
