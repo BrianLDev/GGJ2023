@@ -272,7 +272,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     public void ShowGameLostMenu()
     {
-        Debug.Log("GameMenu.cs: Game Won");
+        Debug.Log("GameMenu.cs: Game Lost");
         GameLost?.Invoke();
 
         ShowVisualElement(_gameLostMenuRef, true);
@@ -308,7 +308,7 @@ public class GameMenu : MonoBehaviour
     public void ContinueGame(ClickEvent clickEvent)
     {
         Debug.Log("GameMenu.cs: Game Continued");
-        // Add continue logic
+        GameManager.Instance.LoadNextLevel();
 
         ShowVisualElement(_gameWonMenuRef, false);
         BlurBackground(false);
@@ -333,6 +333,7 @@ public class GameMenu : MonoBehaviour
     /// <param name="clickEvent">The click event object</param>
     public void ExitMission(ClickEvent clickEvent)
     {
+      Debug.Log("GameMenu: exiting mission");
       GameManager.Instance.MainMenu();
     }
 
