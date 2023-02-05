@@ -9130,10 +9130,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy-Crab (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4683999506606852557, guid: 77625b61a8515416ab02e8c9768608cc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77625b61a8515416ab02e8c9768608cc, type: 3}
 --- !u!4 &991245477 stripped
