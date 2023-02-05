@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
@@ -288,7 +287,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     /// <param name="visualElement">The element to be shown</param>
     /// <param name="state">True if the element is to be shown, False otherwise</param>
-    void ShowVisualElement(VisualElement visualElement, bool state)
+    public void ShowVisualElement(VisualElement visualElement, bool state)
     {
         if (visualElement == null)
             return;
@@ -299,7 +298,7 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// Shows Pause Menu
     /// </summary>
-    void ShowPauseMenu()
+    public void ShowPauseMenu()
     {
         Debug.Log("GameMenu.cs: Game Paused");
         GamePaused?.Invoke();
@@ -311,7 +310,7 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// Shows Game Won Menu
     /// </summary>
-    void ShowGameWonMenu()
+    public void ShowGameWonMenu()
     {
         Debug.Log("GameMenu.cs: Game Won");
         GameWon?.Invoke();
@@ -323,7 +322,7 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// Shows Game Lost Menu
     /// </summary>
-    void ShowGameLostMenu()
+    public void ShowGameLostMenu()
     {
         Debug.Log("GameMenu.cs: Game Won");
         GameLost?.Invoke();
@@ -336,7 +335,16 @@ public class GameMenu : MonoBehaviour
     /// Resumes Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ResumeGame(ClickEvent clickEvent)
+    public void ResumeGame(ClickEvent clickEvent)
+    {
+        Debug.Log("GameMenu.cs: Game Resumed");
+        GameResumed?.Invoke();
+        GameManager.Instance.PauseToggle();
+        ShowVisualElement(_pauseMenuRef, false);
+        BlurBackground(false);
+    }
+
+    public void ResumeGame()
     {
         Debug.Log("GameMenu.cs: Game Resumed");
         GameResumed?.Invoke();
@@ -365,7 +373,7 @@ public class GameMenu : MonoBehaviour
     /// Continues Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ContinueGame(ClickEvent clickEvent)
+    public void ContinueGame(ClickEvent clickEvent)
     {
         Debug.Log("GameMenu.cs: Game Continued");
         // Add continue logic
@@ -378,10 +386,10 @@ public class GameMenu : MonoBehaviour
     /// Restarts Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void RestartGame(ClickEvent clickEvent)
+    public void RestartGame(ClickEvent clickEvent)
     {
         Debug.Log("GameMenu.cs: Game Continued");
-        // Add restart logic
+        GameManager.Instance.StartGame();
 
         ShowVisualElement(_gameLostMenuRef, false);
         BlurBackground(false);
@@ -391,9 +399,9 @@ public class GameMenu : MonoBehaviour
     /// Exits Mission
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ExitMission(ClickEvent clickEvent)
+    public void ExitMission(ClickEvent clickEvent)
     {
-        SceneManager.LoadScene("MainMenu");
+      GameManager.Instance.MainMenu();
     }
 
     /// <summary>
@@ -401,7 +409,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     /// <param name="state">True if the background is to be blurred, False otherwise</param>
     /// <remarks>This was an attempt at using the global volume depth of field to apply a Bokeh blur but it didn't seem to work</remarks>
-    void BlurBackground(bool state)
+    public void BlurBackground(bool state)
     {
         if (Volume == null)
             return;

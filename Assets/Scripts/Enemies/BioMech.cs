@@ -26,8 +26,8 @@ public class BioMech : EnemyBase {
   }
 
   protected void Update() {
-    // choose state
-    if (bioMechState != BioMechState.Dead) {
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && bioMechState != BioMechState.Dead) {
+      // choose state
       stateTimer -= Time.deltaTime;
       if (stateTimer <= 0) {
         stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
@@ -38,13 +38,15 @@ public class BioMech : EnemyBase {
   }
 
   protected void FixedUpdate() {
-    // handle movement
-    if (bioMechState == BioMechState.WalkLeft)
-      transform.position += Vector3.left * walkSpeed * Time.deltaTime;
-    else if (bioMechState == BioMechState.WalkRight)
-      transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-    // Attacking
-    // TODO: ATTACK LEFT, RIGHT
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && bioMechState != BioMechState.Dead) {
+      // handle movement
+      if (bioMechState == BioMechState.WalkLeft)
+        transform.position += Vector3.left * walkSpeed * Time.deltaTime;
+      else if (bioMechState == BioMechState.WalkRight)
+        transform.position += Vector3.right * walkSpeed * Time.deltaTime;
+      // Attacking
+      // TODO: ATTACK LEFT, RIGHT
+    }
   }
 
   protected void ChangeStates(BioMechState newState) {
@@ -79,7 +81,7 @@ public class BioMech : EnemyBase {
       animator.SetTrigger("die");
       spriteRenderer.flipX = true;
       // Destroy(transform.gameObject, 5.0f);
-      // TODO: PLAY VICTORY STINGER AND SHOW VICTORY UI
+      GameManager.Instance.Victory();
     }
   }
 

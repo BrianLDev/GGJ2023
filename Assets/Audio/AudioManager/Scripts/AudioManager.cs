@@ -327,7 +327,6 @@ namespace EcxUtilities {
         /// Note: need to subscribe in Awake (SceneManager.sceneLoaded += OnSceneLoaded;) unsubscribe in OnDestroy (SceneManager.sceneLoaded -= OnSceneLoaded;)
         /// </summary>
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-            Debug.Log("playing music");
             // UPDATE MUSIC AS NEEDED FOR VARIOUS SCENES AND BUILD INDEXES
             if (scene.buildIndex == 0)      // Main Menu
                 AudioManager.Instance.PlayMusic(MusicManager.MainMenuMusic, true, 0.2f);
