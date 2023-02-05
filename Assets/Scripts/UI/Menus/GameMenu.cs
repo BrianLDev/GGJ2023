@@ -13,7 +13,9 @@ public class GameMenu : MonoBehaviour
     private const string _resumeButtonID = "resume__button";
     private const string _restartButtonID = "restart__button";
     private const string _continueButtonID = "continue__button";
-    private const string _exitMissionButtonID = "exitMission__button";
+    private const string _pauseExitMissionButtonID = "pauseExitMission__button";
+    private const string _gameWonExitMissionButtonID = "gameWonExitMission__button";
+    private const string _gameLostExitMissionButtonID = "gameLostExitMission__button";
     private const string _continueDialogueButtonID = "continueDialogue__button";
     private const string _playerDialogueLabelID = "playerDialogue__label";
 
@@ -35,7 +37,9 @@ public class GameMenu : MonoBehaviour
     private Button _resumeButtonRef;
     private Button _restartButtonRef;
     private Button _continueButtonRef;
-    private Button _exitMissionButtonRef;
+    private Button _pauseExitMissionButtonRef;
+    private Button _gameWonExitMissionButtonRef;
+    private Button _gameLostExitMissionButtonRef;
     private Button _continueDialogueButtonRef;
 
     private Label _playerDialogueLabelRef;
@@ -139,7 +143,9 @@ public class GameMenu : MonoBehaviour
         _resumeButtonRef = _root.Query<Button>(_resumeButtonID);
         _restartButtonRef = _root.Query<Button>(_restartButtonID);
         _continueButtonRef = _root.Query<Button>(_continueButtonID);
-        _exitMissionButtonRef = _root.Query<Button>(_exitMissionButtonID);
+        _pauseExitMissionButtonRef = _root.Query<Button>(_pauseExitMissionButtonID);
+        _gameWonExitMissionButtonRef = _root.Query<Button>(_gameWonExitMissionButtonID);
+        _gameLostExitMissionButtonRef = _root.Query<Button>(_gameLostExitMissionButtonID);
         _continueDialogueButtonRef = _root.Query<Button>(_continueDialogueButtonID);
 
         _playerDialogueLabelRef = _root.Query<Label>(_playerDialogueLabelID);
@@ -155,7 +161,9 @@ public class GameMenu : MonoBehaviour
         _resumeButtonRef?.RegisterCallback<ClickEvent>(ResumeGame);
         _continueButtonRef?.RegisterCallback<ClickEvent>(ContinueGame);
         _restartButtonRef?.RegisterCallback<ClickEvent>(RestartGame);
-        _exitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _pauseExitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _gameWonExitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _gameLostExitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
         _continueDialogueButtonRef?.RegisterCallback<ClickEvent>(ContinueDialogue);
     }
 
