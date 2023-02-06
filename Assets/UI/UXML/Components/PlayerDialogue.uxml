@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/Base/Variables.uss?fileID=7433441132597879392&amp;guid=e0a1211cd2289ca4cbd2c75ab8047b59&amp;type=3#Variables" />
+    <Style src="project://database/Assets/UI/USS/Components/PlayerDialogue.uss?fileID=7433441132597879392&amp;guid=ed185136a8af2ec44b18873743cf3cfe&amp;type=3#PlayerDialogue" />
+    <ui:VisualElement name="playerDialogue__container" style="height: 478px; top: auto; left: auto; bottom: 2px; width: auto;">
+        <ui:VisualElement name="playerDialogue__panel" style="background-color: rgba(166, 163, 163, 0); width: 87%; height: 90px; position: absolute; top: auto; left: 165px; background-image: resource(&apos;Images/Panel-Secondary-Stroke-12&apos;); bottom: 0;">
+            <ui:Label text="What happened..." display-tooltip-when-elided="true" name="playerDialogue__label" style="height: 46px; width: 80%; -unity-font-definition: url(&apos;project://database/Assets/UI/Fonts/Text/Orbitron-Bold%20SDF%201.asset?fileID=11400000&amp;guid=993d9215e7b58bf41a0d163fd5822c9f&amp;type=2#Orbitron-Bold SDF 1&apos;); font-size: 25px; color: rgb(121, 206, 246); position: absolute; top: 20px; left: 28px;" />
+            <ui:Button display-tooltip-when-elided="true" name="continueDialogue__button" class="continue__dialogue" style="position: absolute; top: 24px; left: auto; background-color: rgba(88, 88, 88, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); height: 40px; width: 48px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; justify-content: center; align-items: center; right: 20px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="playerPotrait__panel" style="background-color: rgba(202, 202, 202, 0); width: 180px; height: 120px; background-image: resource(&apos;Images/Panel-Primary-Stroke-12&apos;); top: auto; -unity-background-scale-mode: stretch-to-fill; bottom: 0; flex-direction: column; position: absolute; left: 0;">
+            <ui:VisualElement name="playerPotrait__container" style="background-image: resource(&apos;Images/Player-Potrait&apos;); width: 202px; height: 147px; position: absolute; top: -29px; left: -14px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

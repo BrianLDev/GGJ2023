@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: c9aa35ed4be46a045926fe83b965453d
   - enabled: 1
+    path: Assets/Scenes/Testing/LevelOne-Cuervo.unity
+    guid: b530568e25365ab489caf2776bc9105a
+  - enabled: 1
     path: Assets/Scenes/Testing/Test-Level 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
