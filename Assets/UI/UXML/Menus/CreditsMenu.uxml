@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/Components/Button.uss?fileID=7433441132597879392&amp;guid=1cc9bd945ab65394690e1aa55fe6f63c&amp;type=3#Button" />
+    <Style src="project://database/Assets/UI/USS/Base/Variables.uss?fileID=7433441132597879392&amp;guid=e0a1211cd2289ca4cbd2c75ab8047b59&amp;type=3#Variables" />
+    <Style src="project://database/Assets/UI/USS/Base/Base.uss?fileID=7433441132597879392&amp;guid=5846285edfbef2d419d58dd4a5d4eadd&amp;type=3#Base" />
+    <ui:VisualElement name="menu__container" style="justify-content: center; align-items: center; top: auto;">
+        <ui:VisualElement name="credits__container" style="position: absolute; background-image: resource(&apos;Images/Credits&apos;); height: 452px; width: 613px; top: 11px; left: 18px;">
+            <ui:Button text="&#10;" display-tooltip-when-elided="true" name="creditsBack__button" class="creditsBack__button" style="position: absolute; background-color: rgba(88, 88, 88, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; top: 38px; left: 27px; height: 33px; width: 43px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
