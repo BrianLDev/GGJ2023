@@ -4,16 +4,21 @@ using UnityEngine;
 using EcxUtilities;
 
 public class BioMech : EnemyBase {
-  public enum BioMechState { Idle, WalkLeft, WalkRight, AttackLeft, AttackRight, Dead }
+  public enum BioMechState { Idle, WalkLeft, WalkRight, Attack, Dead }
 
+  [SerializeField] private Bullet bullet;
   [SerializeField] private float damage = 25;
   [SerializeField] private float walkSpeed = 0.5f;
   [SerializeField] private float stateDuration = 1.5f;
+  [SerializeField] private float shootDelay = 0.6f;
   private BioMechState bioMechState = BioMechState.Idle;
   private float stateTimer = 0;
+  private float shootTimer;
+  private Vector3 shootDir;
   private Rigidbody2D rb;
   private Animator animator;
   private SpriteRenderer spriteRenderer;
+  private Player player;
 
   protected void Awake() {
     rb = GetComponent<Rigidbody2D>();
@@ -23,15 +28,17 @@ public class BioMech : EnemyBase {
 
   protected new void Start() {
       base.Start();
+      player = FindObjectOfType<Player>();
   }
 
   protected void Update() {
     if (GameManager.Instance.CurrentState == GameManager.GameState.Game && bioMechState != BioMechState.Dead) {
       // choose state
+      shootDir = (player.transform.position - transform.position).normalized;
       stateTimer -= Time.deltaTime;
       if (stateTimer <= 0) {
         stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
-        int random = Random.Range(0, 5);
+        int random = Random.Range(0, 4);
         ChangeStates((BioMechState)random);
       }
     }
@@ -44,8 +51,7 @@ public class BioMech : EnemyBase {
         transform.position += Vector3.left * walkSpeed * Time.deltaTime;
       else if (bioMechState == BioMechState.WalkRight)
         transform.position += Vector3.right * walkSpeed * Time.deltaTime;
-      // Attacking
-      // TODO: ATTACK LEFT, RIGHT
+
     }
   }
 
@@ -63,15 +69,15 @@ public class BioMech : EnemyBase {
       spriteRenderer.flipX = false;
       animator.SetBool("isWalking", true);
     }
-    else if (bioMechState == BioMechState.AttackLeft) {
-      spriteRenderer.flipX = true;
-      animator.SetBool("isWalking", false);
-    }
-    else if (bioMechState == BioMechState.AttackRight) {
-      spriteRenderer.flipX = false;
-      animator.SetBool("isWalking", false);
-    }
+    // else if (bioMechState == BioMechState.Attack) {
+    //   spriteRenderer.flipX = true;
+    //   animator.SetBool("isWalking", false);
+    // }
   }
+
+  // protected override void Shoot() {
+      // TODO: SHOOT AT PLAYER
+  // }
 
   protected override void Die() {
     if (bioMechState != BioMechState.Dead) {

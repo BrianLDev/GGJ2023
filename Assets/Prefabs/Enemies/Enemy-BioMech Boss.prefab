@@ -190,6 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 300
+  bullet: {fileID: 0}
   damage: 25
-  walkSpeed: 0.5
+  walkSpeed: 2
   stateDuration: 1.5
+  shootDelay: 0.6
