@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UI/USS/Components/Button.uss?fileID=7433441132597879392&amp;guid=1cc9bd945ab65394690e1aa55fe6f63c&amp;type=3#Button" />
     <Style src="project://database/Assets/UI/USS/Base/Variables.uss?fileID=7433441132597879392&amp;guid=e0a1211cd2289ca4cbd2c75ab8047b59&amp;type=3#Variables" />
     <Style src="project://database/Assets/UI/USS/Base/Base.uss?fileID=7433441132597879392&amp;guid=5846285edfbef2d419d58dd4a5d4eadd&amp;type=3#Base" />
-    <ui:VisualElement name="MainMenu" style="justify-content: center; align-items: center; top: auto; width: 100%;">
+    <ui:VisualElement name="MainMenu" style="justify-content: center; align-items: center; top: auto; width: 100%; display: flex;">
         <ui:VisualElement name="logo" style="background-image: resource(&apos;Images/Logo&apos;); width: 640px; height: 146px; -unity-background-scale-mode: stretch-to-fill; padding-left: 0; position: relative; top: 40px; left: auto; align-items: center; justify-content: center; margin-left: auto; margin-right: auto;" />
         <ui:VisualElement name="buttons" style="top: 170px; justify-content: center; align-items: center; height: auto; width: 100%;">
             <ui:Button display-tooltip-when-elided="true" name="start__button" class="menu__button start__button" style="background-color: rgba(88, 88, 88, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);" />
@@ -11,5 +11,5 @@
             <ui:Button display-tooltip-when-elided="true" name="exit__button" enable-rich-text="true" class="menu__button exit__button" style="border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); background-color: rgba(88, 88, 88, 0);" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:Instance template="CreditsMenu" name="CreditsMenu" style="position: absolute; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); margin-left: auto; margin-right: auto; align-items: center; justify-content: center; display: none;" />
+    <ui:Instance template="CreditsMenu" name="CreditsMenu" style="position: absolute; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); margin-left: 25%; margin-right: 0; align-items: center; justify-content: center; display: none; margin-top: 10%;" />
 </ui:UXML>
