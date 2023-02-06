@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
@@ -14,7 +13,11 @@ public class GameMenu : MonoBehaviour
     private const string _resumeButtonID = "resume__button";
     private const string _restartButtonID = "restart__button";
     private const string _continueButtonID = "continue__button";
-    private const string _exitMissionButtonID = "exitMission__button";
+    private const string _pauseExitMissionButtonID = "pauseExitMission__button";
+    private const string _gameWonExitMissionButtonID = "gameWonExitMission__button";
+    private const string _gameLostExitMissionButtonID = "gameLostExitMission__button";
+    private const string _continueDialogueButtonID = "continueDialogue__button";
+    private const string _playerDialogueLabelID = "playerDialogue__label";
 
     private const string _playerShieldBarID = "playerShieldBar";
     private const string _playerHealthBarID = "playerHealthBar";
@@ -26,6 +29,7 @@ public class GameMenu : MonoBehaviour
     private VisualElement _pauseMenuRef;
     private VisualElement _gameWonMenuRef;
     private VisualElement _gameLostMenuRef;
+    private VisualElement _playerDialogueComponentRef;
     private VisualElement _playerHealthBarRef;
     private VisualElement _playerShieldBarRef;
     private VisualElement _playerAmmoBarRef;
@@ -33,7 +37,12 @@ public class GameMenu : MonoBehaviour
     private Button _resumeButtonRef;
     private Button _restartButtonRef;
     private Button _continueButtonRef;
-    private Button _exitMissionButtonRef;
+    private Button _pauseExitMissionButtonRef;
+    private Button _gameWonExitMissionButtonRef;
+    private Button _gameLostExitMissionButtonRef;
+    private Button _continueDialogueButtonRef;
+
+    private Label _playerDialogueLabelRef;
 
     private bool _isGameOver;
 
@@ -48,6 +57,9 @@ public class GameMenu : MonoBehaviour
 
     [SerializeField]
     string GameLostMenuID = "GameLostMenu";
+
+    [SerializeField]
+    string PlayerDialogueComponentID = "PlayerDialogue";
 
     [Header("Blur")] 
     [Tooltip("Volume used to blur")] 
@@ -73,43 +85,43 @@ public class GameMenu : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// On frame update, check for key presses
-    /// </summary>
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
-    //     {
-    //         Debug.Log("GameMenu.cs: Escape key pressed");
-    //         ShowPauseMenu();
-    //     }
+    ///// <summary>
+    ///// On frame update, check for key presses
+    ///// </summary>
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown("escape") || Input.GetKeyDown("p"))
+    //    {
+    //        Debug.Log("GameMenu.cs: Escape key pressed");
+    //        ShowPauseMenu();
+    //    }
 
-    //     if (Input.GetKeyDown("m"))
-    //     {
-    //         Debug.Log("GameMenu.cs: M Pressed");
-    //         GainShield(20);
-    //     }
+    //    if (Input.GetKeyDown("m"))
+    //    {
+    //        Debug.Log("GameMenu.cs: M Pressed");
+    //        ShowPlayerDialogue("What happened... is that an alien");
+    //    }
 
-    //     if (Input.GetKeyDown("k"))
-    //     {
-    //         Debug.Log("GameMenu.cs: K Pressed");
-    //         ReduceHealth(10);
+    //    if (Input.GetKeyDown("k"))
+    //    {
+    //        Debug.Log("GameMenu.cs: K Pressed");
+    //        ReduceHealth(10);
 
-    //     }
+    //    }
 
-    //     if (Input.GetKeyDown("l"))
-    //     {
-    //         Debug.Log("GameMenu.cs: L Pressed");
-    //         GainHealth(10);
-    //     }
+    //    if (Input.GetKeyDown("l"))
+    //    {
+    //        Debug.Log("GameMenu.cs: L Pressed");
+    //        GainHealth(10);
+    //    }
 
-    //     if (Input.GetKeyDown("o"))
-    //     {
-    //         Debug.Log("GameMenu.cs: K Pressed");
-    //         ReduceAmmo(10);
+    //    if (Input.GetKeyDown("o"))
+    //    {
+    //        Debug.Log("GameMenu.cs: K Pressed");
+    //        ReduceAmmo(10);
 
-    //     }
-    // }
+    //    }
+    //}
 
     /// <summary>
     /// The general workflow uses string IDs to query the VisualTreeAsset and find matching Visual Elements in the UXML.
@@ -123,6 +135,7 @@ public class GameMenu : MonoBehaviour
         _pauseMenuRef = _root.Query(PauseMenuID);
         _gameWonMenuRef = _root.Query(GameWonMenuID);
         _gameLostMenuRef = _root.Query(GameLostMenuID);
+        _playerDialogueComponentRef = _root.Query(PlayerDialogueComponentID);
         _playerShieldBarRef = _root.Query<VisualElement>(_playerShieldBarID);
         _playerHealthBarRef = _root.Query<VisualElement>(_playerHealthBarID);
         _playerAmmoBarRef = _root.Query<VisualElement>(_playerAmmoBarID);
@@ -130,9 +143,14 @@ public class GameMenu : MonoBehaviour
         _resumeButtonRef = _root.Query<Button>(_resumeButtonID);
         _restartButtonRef = _root.Query<Button>(_restartButtonID);
         _continueButtonRef = _root.Query<Button>(_continueButtonID);
-        _exitMissionButtonRef = _root.Query<Button>(_exitMissionButtonID);
+        _pauseExitMissionButtonRef = _root.Query<Button>(_pauseExitMissionButtonID);
+        _gameWonExitMissionButtonRef = _root.Query<Button>(_gameWonExitMissionButtonID);
+        _gameLostExitMissionButtonRef = _root.Query<Button>(_gameLostExitMissionButtonID);
+        _continueDialogueButtonRef = _root.Query<Button>(_continueDialogueButtonID);
 
-        
+        _playerDialogueLabelRef = _root.Query<Label>(_playerDialogueLabelID);
+
+
     }
 
     /// <summary>
@@ -143,7 +161,10 @@ public class GameMenu : MonoBehaviour
         _resumeButtonRef?.RegisterCallback<ClickEvent>(ResumeGame);
         _continueButtonRef?.RegisterCallback<ClickEvent>(ContinueGame);
         _restartButtonRef?.RegisterCallback<ClickEvent>(RestartGame);
-        _exitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _pauseExitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _gameWonExitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _gameLostExitMissionButtonRef?.RegisterCallback<ClickEvent>(ExitMission);
+        _continueDialogueButtonRef?.RegisterCallback<ClickEvent>(ContinueDialogue);
     }
 
     /// <summary>
@@ -274,7 +295,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     /// <param name="visualElement">The element to be shown</param>
     /// <param name="state">True if the element is to be shown, False otherwise</param>
-    void ShowVisualElement(VisualElement visualElement, bool state)
+    public void ShowVisualElement(VisualElement visualElement, bool state)
     {
         if (visualElement == null)
             return;
@@ -285,7 +306,7 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// Shows Pause Menu
     /// </summary>
-    void ShowPauseMenu()
+    public void ShowPauseMenu()
     {
         Debug.Log("GameMenu.cs: Game Paused");
         GamePaused?.Invoke();
@@ -297,7 +318,7 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// Shows Game Won Menu
     /// </summary>
-    void ShowGameWonMenu()
+    public void ShowGameWonMenu()
     {
         Debug.Log("GameMenu.cs: Game Won");
         GameWon?.Invoke();
@@ -309,9 +330,9 @@ public class GameMenu : MonoBehaviour
     /// <summary>
     /// Shows Game Lost Menu
     /// </summary>
-    void ShowGameLostMenu()
+    public void ShowGameLostMenu()
     {
-        Debug.Log("GameMenu.cs: Game Won");
+        Debug.Log("GameMenu.cs: Game Lost");
         GameLost?.Invoke();
 
         ShowVisualElement(_gameLostMenuRef, true);
@@ -322,7 +343,16 @@ public class GameMenu : MonoBehaviour
     /// Resumes Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ResumeGame(ClickEvent clickEvent)
+    public void ResumeGame(ClickEvent clickEvent)
+    {
+        Debug.Log("GameMenu.cs: Game Resumed");
+        GameResumed?.Invoke();
+        GameManager.Instance.PauseToggle();
+        ShowVisualElement(_pauseMenuRef, false);
+        BlurBackground(false);
+    }
+
+    public void ResumeGame()
     {
         Debug.Log("GameMenu.cs: Game Resumed");
         GameResumed?.Invoke();
@@ -331,14 +361,30 @@ public class GameMenu : MonoBehaviour
         BlurBackground(false);
     }
 
+    public void ShowPlayerDialogue(string dialogueText)
+    {
+        Debug.Log($"GameMenu.cs: Showing dialogue {dialogueText}");
+
+        _playerDialogueLabelRef.text = dialogueText;
+        ShowVisualElement(_playerDialogueComponentRef, true);
+    }
+
+    void ContinueDialogue(ClickEvent clickEvent)
+    {
+        Debug.Log("GameMenu.cs: Dialogue continued");
+        // Add continue logic
+
+        ShowVisualElement(_playerDialogueComponentRef, false);
+    }
+
     /// <summary>
     /// Continues Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ContinueGame(ClickEvent clickEvent)
+    public void ContinueGame(ClickEvent clickEvent)
     {
         Debug.Log("GameMenu.cs: Game Continued");
-        // Add continue logic
+        GameManager.Instance.LoadNextLevel();
 
         ShowVisualElement(_gameWonMenuRef, false);
         BlurBackground(false);
@@ -348,10 +394,10 @@ public class GameMenu : MonoBehaviour
     /// Restarts Game
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void RestartGame(ClickEvent clickEvent)
+    public void RestartGame(ClickEvent clickEvent)
     {
         Debug.Log("GameMenu.cs: Game Continued");
-        // Add restart logic
+        GameManager.Instance.StartGame();
 
         ShowVisualElement(_gameLostMenuRef, false);
         BlurBackground(false);
@@ -361,9 +407,10 @@ public class GameMenu : MonoBehaviour
     /// Exits Mission
     /// </summary>
     /// <param name="clickEvent">The click event object</param>
-    void ExitMission(ClickEvent clickEvent)
+    public void ExitMission(ClickEvent clickEvent)
     {
-        SceneManager.LoadScene("MainMenu");
+      Debug.Log("GameMenu: exiting mission");
+      GameManager.Instance.MainMenu();
     }
 
     /// <summary>
@@ -371,7 +418,7 @@ public class GameMenu : MonoBehaviour
     /// </summary>
     /// <param name="state">True if the background is to be blurred, False otherwise</param>
     /// <remarks>This was an attempt at using the global volume depth of field to apply a Bokeh blur but it didn't seem to work</remarks>
-    void BlurBackground(bool state)
+    public void BlurBackground(bool state)
     {
         if (Volume == null)
             return;

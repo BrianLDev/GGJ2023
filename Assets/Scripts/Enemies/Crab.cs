@@ -4,7 +4,7 @@ using EcxUtilities;
 using UnityEngine;
 
 public class Crab : EnemyBase {
-  public enum CrabState { Idle, WalkLeft, WalkRight }
+  public enum CrabState { Idle, WalkLeft, WalkRight, Dead }
 
   [SerializeField] private float damage;
   [SerializeField] private float walkSpeed = 0.5f;
@@ -26,21 +26,25 @@ public class Crab : EnemyBase {
   }
 
   protected void Update() {
-    // choose state
-    stateTimer -= Time.deltaTime;
-    if (stateTimer <= 0) {
-      stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
-      int random = Random.Range(0, 3);
-      ChangeStates((CrabState)random);
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && crabState != CrabState.Dead) {
+      // choose state
+      stateTimer -= Time.deltaTime;
+      if (stateTimer <= 0) {
+        stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
+        int random = Random.Range(0, 3);
+        ChangeStates((CrabState)random);
+      }
     }
   }
 
   protected void FixedUpdate() {
-    // handle movement
-    if (crabState == CrabState.WalkLeft)
-      transform.position += Vector3.left * walkSpeed * Time.deltaTime;
-    else if (crabState == CrabState.WalkRight)
-      transform.position += Vector3.right * walkSpeed * Time.deltaTime;
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && crabState != CrabState.Dead) {
+      // handle movement
+      if (crabState == CrabState.WalkLeft)
+        transform.position += Vector3.left * walkSpeed * Time.deltaTime;
+      else if (crabState == CrabState.WalkRight)
+        transform.position += Vector3.right * walkSpeed * Time.deltaTime;
+    }
   }
 
   protected void ChangeStates(CrabState newState) {

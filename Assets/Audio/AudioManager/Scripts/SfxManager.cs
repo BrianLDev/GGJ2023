@@ -31,6 +31,7 @@ namespace EcxUtilities {
         [Header("Powerup SFX")]
         public AudioClip Health;
         public AudioClip Shield;
+        public AudioClip Ammo;
         [Header("General SFX")]
         public AudioClip AmbientNoise;
         public AudioClip ShutDown;

@@ -4,7 +4,7 @@ using UnityEngine;
 using EcxUtilities;
 
 public class Jumper : EnemyBase {
-  public enum JumperState { Idle, JumpLeft, JumpRight }
+  public enum JumperState { Idle, JumpLeft, JumpRight, Dead }
 
   [SerializeField] private float damage = 20f;
   [SerializeField] private float jumpForce = 4f;
@@ -26,18 +26,20 @@ public class Jumper : EnemyBase {
   }
 
   protected void Update() {
-    // choose state
-    stateTimer -= Time.deltaTime;
-    if (stateTimer <= 0) {
-      stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
-      int random = Random.Range(0, 3);
-      ChangeStates((JumperState)random);
+    if (GameManager.Instance.CurrentState == GameManager.GameState.Game && jumperState != JumperState.Dead) {
+      // choose state
+      stateTimer -= Time.deltaTime;
+      if (stateTimer <= 0) {
+        stateTimer = stateDuration * Random.Range(0.5f, 1.5f);
+        int random = Random.Range(0, 3);
+        ChangeStates((JumperState)random);
+      }
+      // flip facing up/down
+      if (rb.velocity.y > 0.1f)
+        spriteRenderer.flipY = true;
+      else
+        spriteRenderer.flipY = false;
     }
-    // flip facing up/down
-    if (rb.velocity.y > 0.1f)
-      spriteRenderer.flipY = true;
-    else
-      spriteRenderer.flipY = false;
   }
 
   protected void ChangeStates(JumperState newState) {
