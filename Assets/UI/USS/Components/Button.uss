@@ -1,6 +1,6 @@
 .menu__button {
-    width: 35%;
-    height: 80%;
+    width: 30%;
+    height: 60%;
     -unity-background-scale-mode: stretch-to-fill;
     font-size: 30px;
 }
@@ -62,4 +62,14 @@
 .continue__button:focus,
 .continue__button:hover {
     background-image: resource('Images/Continue-Mission-Button-Focused');
+}
+
+.credits__button {
+    top: 20px;
+    background-image: resource('Images/Credits-Button');
+}
+
+.credits__button:focus,
+.credits__button:hover {
+    background-image: resource('Images/Credits-Button-Focused');
 }
