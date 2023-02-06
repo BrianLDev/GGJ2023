@@ -73,3 +73,12 @@
 .credits__button:hover {
     background-image: resource('Images/Credits-Button-Focused');
 }
+
+.creditsBack__button {
+    background-image: resource('Images/Arrow-Left');
+}
+
+.creditsBack__button:focus,
+.creditsBack__button:hover {
+    background-image: resource('Images/Arrow-Left-Focused');
+}
