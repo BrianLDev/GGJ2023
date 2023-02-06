@@ -67,7 +67,7 @@ public class Octopus : EnemyBase {
   }
 
   protected override void PlayDieSFX() {
-    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx, 0.8f);
+    AudioManager.Instance.PlayClip(AudioManager.Instance.SfxManager.OctopusDie, AudioCategory.Sfx, 0.5f);
   }
 
   public void OnCollisionEnter2D(Collision2D coll) {

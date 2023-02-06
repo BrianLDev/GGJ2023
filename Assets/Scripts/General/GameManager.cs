@@ -52,6 +52,11 @@ namespace EcxUtilities {
       SceneManager.LoadScene(level);
     }
 
+    public void LoadNextLevel() {
+      SetState(GameState.Game);
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1, LoadSceneMode.Single);
+    }
+
     // note - Player.cs calls pause toggle since it receives Input messages
     public void PauseToggle() {
       if (currentState == GameState.Game) {
@@ -65,11 +70,13 @@ namespace EcxUtilities {
     }
 
     public void GameOver() {
+      AudioManager.Instance.PlayClip(AudioManager.Instance.MusicManager.DefeatStinger, AudioCategory.Music, 1.0f);
       SetState(GameState.GameOver);
       gameMenu.ShowGameLostMenu();
     }
 
     public void Victory() {
+      AudioManager.Instance.PlayClip(AudioManager.Instance.MusicManager.VictoryStinger, AudioCategory.Music, 1.0f);
       SetState(GameState.GameOver);
       gameMenu.ShowGameWonMenu();
     }
