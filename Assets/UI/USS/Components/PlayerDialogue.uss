@@ -1,8 +1,8 @@
 .continue__dialogue {
-    background-image: resource('Images/Arrow-Left');
+    background-image: resource('Images/Arrow-Right');
 }
 
 .continue__dialogue:focus,
 .continue__dialogue:hover {
-    background-image: resource('Images/Arrow-Left-Focused');
+    background-image: resource('Images/Arrow-Right-Focused');
 }
