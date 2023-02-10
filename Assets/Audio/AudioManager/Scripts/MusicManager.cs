@@ -25,7 +25,7 @@ namespace EcxUtilities {
         public AudioClip Respite;
         public AudioClip TheStructure;
         public AudioClip FilledToTheBrim;
-        public AudioClip GameOverMusic;
+        public AudioClip Credits;
 
         [Header("Win/Loss Stingers")]
         public AudioClip ObjectiveCompleteStinger;

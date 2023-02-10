@@ -338,8 +338,8 @@ namespace EcxUtilities {
                 AudioManager.Instance.PlayMusic(MusicManager.Respite, true, 0.2f);
             else if (scene.buildIndex == 4) // Level 4
                 AudioManager.Instance.PlayMusic(MusicManager.FilledToTheBrim, true, 0.2f);
-            else if (scene.buildIndex == 5) // Game Over
-                AudioManager.Instance.PlayMusic(MusicManager.GameOverMusic, true, 0.2f);
+            else if (scene.buildIndex == 5) // Credits
+                AudioManager.Instance.PlayMusic(MusicManager.Credits, true, 0.1f);
         }
 
         private void OnDestroy() {

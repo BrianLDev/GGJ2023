@@ -17,7 +17,7 @@ MonoBehaviour:
   Respite: {fileID: 8300000, guid: bc051528e0c1e4a47ae0b3654b57d154, type: 3}
   TheStructure: {fileID: 8300000, guid: ca1fb1e7db5954d5dac6588a710503b6, type: 3}
   FilledToTheBrim: {fileID: 8300000, guid: 48c945932bd3c497b99e247f2439c065, type: 3}
-  GameOverMusic: {fileID: 0}
+  Credits: {fileID: 8300000, guid: 5f271097210fb4ff588d13c92b101e64, type: 3}
   ObjectiveCompleteStinger: {fileID: 8300000, guid: bd4de7c8b44264f8f9f542b0f141d34e, type: 3}
   VictoryStinger: {fileID: 8300000, guid: b048fb530684444e1949528f6702241c, type: 3}
   DefeatStinger: {fileID: 8300000, guid: 5e6fa0dc5345a4f31a188aae32b0fd99, type: 3}
